@@ -88,8 +88,13 @@ Passwort: `test`
 <!-- ROADMAP -->
 ## Was ist geplant?
 
+- Patienten können mehrfach ein und ausgebucht werden und bekommen eine Historie.
+- Anpassung der Berechnung der Statistik: Ausgebuchte Patienten werden nicht mehr mitgezählt.
+- Seite zum schnelleren Ausbuchen von Patienten zum Einsatzende.
 - Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.
 - Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn 😏 )
+- UHS-Modul (ähnlich wie SanBereich mit angepasstem Datensatz (Kostenträger, Fachrichtung, Meldebild etc.)
+- Schnittstelle zum openTacticalDispatcher zum Anlegen von Transporten und Einsätzen.
 
 
 

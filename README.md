@@ -9,7 +9,7 @@
 
 
 <details open="open">
-  <summary>Table of Contents</summary>
+  <summary>Inhalt</summary>
   <ol>
     <li>
       <a href="#Über-das-Projekt">Über das Projekt</a>
@@ -75,17 +75,21 @@ Passwort: `test`
 
 
 ## Aktueller Stand
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+  
+Änderungsübersicht:
+- Suchfunktion komplett in die Übersichtstabelle übernommen. Wichtig hierbei: Es wird nicht mehr direkt in der Datenbank gesucht, sondern in der bereits geladenen Tabelle. Das ist deutlich schneller bei großen Datenmengen, jedoch ist ein parallel eingetragener Patient nicht direkt zu finden. Erst nach erneutem laden der Seite erscheint dieser in der Tabelle.
+- Das Design wurde noch mal deutlich überarbeitet. Sollte noch mal deutlich simpler und übersichtlicher geworden sein.
+- Externe Statistik in der Box-Version von außen erreichbar. Voraussetzung ist eine Internetverbindung am Einsatzort.
+- Lageübersichtsseite hinzugekommen. Hier findet ihr alle Infos zum Einsatz, sowie die Downloads.
+- Der SanBereich hat eine eigene Unterseite bekommen wo nur Patienten aus dem SanBereich angezeigt werden.
 
 
 
 <!-- ROADMAP -->
 ## Was ist geplant?
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
+- Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.
+- Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn 😏 )
 
 
 

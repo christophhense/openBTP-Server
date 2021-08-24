@@ -111,7 +111,7 @@ Distributed under the GNU General Public License v3.0. See `LICENSE` for more in
 <!-- CONTACT -->
 ## Contact
 
-Cedric Steinbreecher - [@SirVanStone](https://twitter.com/SirVanStone) - hallo@nonameserver.org
+Cédric Steinbrecher - [@SirVanStone](https://twitter.com/SirVanStone) - hallo@nonameserver.org
 
 Project Link: [https://github.com/elypson-Stone/openBTP-Server](https://github.com/elypson-Stone/openBTP-Server)
 

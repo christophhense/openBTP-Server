@@ -34,51 +34,51 @@ if (!isset($_SESSION['loggedin'])) {
 
     <?php
     //Datenbankdaten anpassen
-    $pdo = new PDO('mysql:host=localhost;dbname=dbname', 'admin', 'password');
+    include("dbConfig.php");
 
-    $statement = $pdo->prepare("SELECT * FROM patienten");
+    $statement = $pdo->prepare("SELECT * FROM patienten WHERE ausgang <= CURDATE()");
     $statement->execute(array());
     $anzahl_pat = $statement->rowCount();
-    echo "<h3>Gesamtzahl Patienten im BTP: $anzahl_pat </h3>";
+    echo "<h3>Aktuelle Anzahl Patienten innerhalb BTP: $anzahl_pat </h3>";
 
     ?>
     <div>
       <div>
         <p>
-        <h4>Raumbelegung:</h4>
+        <h4>Aktuelle Raumbelegung:</h4>
         </p>
       </div>
 
       <?php
       //Datenbankdaten anpassen
-      $pdo = new PDO('mysql:host=localhost;dbname=dbname', 'admin', 'password');
+      include("dbConfig.php");
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ?");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
       $statement->execute(array('Aula'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>Aula: $anzahl_pat </p>";
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ?");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
       $statement->execute(array('Sporthalle'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>Sporthalle: $anzahl_pat </p>";
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ?");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
       $statement->execute(array('Turnhalle1'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>Turnhalle 1: $anzahl_pat </p>";
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ?");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
       $statement->execute(array('Turnhalle2'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>Turnhalle 2: $anzahl_pat </p>";
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ?");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
       $statement->execute(array('Turnhalle3'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>Turnhalle 3: $anzahl_pat </p>";
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ?");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
       $statement->execute(array('SanBereich'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>San Bereich: $anzahl_pat </p>";
@@ -88,13 +88,15 @@ if (!isset($_SESSION['loggedin'])) {
       <div>
         <div>
           <p>
+            <h3>Gesamte Statistik</h3>
+            <p>
           <h4>Transportmittel:</h4>
           </p>
         </div>
 
         <?php
         //Datenbankdaten anpassen
-        $pdo = new PDO('mysql:host=localhost;dbname=dbname', 'admin', 'password');
+        include("dbConfig.php");
 
         $statement = $pdo->prepare("SELECT * FROM patienten WHERE TMittel = ?");
         $statement->execute(array('RTW'));
@@ -118,8 +120,14 @@ if (!isset($_SESSION['loggedin'])) {
 
 
         ?>
+<?php
+include("dbConfig.php");
 
-
+$statement = $pdo->prepare("SELECT * FROM patienten");
+$statement->execute(array());
+$anzahl_pat = $statement->rowCount();
+echo "<h3>Anzahl registrieter Patienten insgesamt: $anzahl_pat </h3> </p>";
+?>
       </div>
     </div>
 

@@ -1,12 +1,7 @@
 <?php
 session_start();
 // Change this to your connection info.
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'admin';
-$DATABASE_PASS = 'password';
-$DATABASE_NAME = 'dbname';
-
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+include("dbConfig.php");
 if ( mysqli_connect_errno() ) {
 
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());

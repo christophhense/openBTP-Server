@@ -55,8 +55,9 @@ evtl. phpMyAdmin um die Einrichtung zu verwalten.
 ### Ans Laufen Bringen
 
 1. Datenbankdaten in folgenden Dateien anpassen: `dbConfig.php` und `statistik.php`
-2. `benutzer.xml` und `patienten.xml` in Datenbank importieren um Tabllen und einen Testbenutzer zu erstellen.
-3. XML Dateien löschen.
+2. `benutzer.sql` und `patienten.sql` in Datenbank importieren um Tabllen und einen Testbenutzer zu erstellen.
+3. SQL
+  Dateien löschen.
 4. Dateien in den Webordner bewegen.
 
 ### Erste Anmeldung
@@ -83,6 +84,7 @@ Passwort: `test`
 <!-- ROADMAP -->
 ## Was ist geplant?
 
+- Verinfachte installation über eine `/install.php`
 - Patient*innen können mehrfach ein und ausgebucht werden und bekommen eine Historie.
 - Seite zum schnelleren Ausbuchen von Patient*innen zum Einsatzende.
 - Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.

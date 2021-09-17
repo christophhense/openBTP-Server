@@ -2,7 +2,7 @@
   <h3 align="center">openBTP-Server</h3>
 
   <p align="center">
-    Eine übersichtliche Lösung, um die Registratur und Auswertung von Patienten im Betreuungsplatzeinsatz zu übernehmen
+    Eine übersichtliche Lösung, um die Registratur und Auswertung von Patient*innen im Betreuungsplatzeinsatz zu übernehmen
 
 </p>
 
@@ -35,16 +35,13 @@
 
 ## Über das Projekt
 
-Der openBTP-Server soll das schnelle und effektive Patientenmanagement am Einsatzort ermöglichen. Die Grundidee entstand aus einem geplanten größeren Betreuungseinsatz im Rahmen einer
-Bombenevakuierung. Auf genau diesen Einsatz ist das Projekt zugeschnitten. Aber auch eine Anwendung in anderen Bereichen in möglich. Immer dann, wenn Patienten oder Besucher registriert und verwaltet werden müssen.
+Der openBTP-Server soll das schnelle und effektive Patient*innenmanagement am Einsatzort ermöglichen. Die Grundidee entstand aus einem geplanten größeren Betreuungseinsatz im Rahmen einer
+Bombenevakuierung. Auf genau diesen Einsatz ist das Projekt zugeschnitten. Aber auch eine Anwendung in anderen Bereichen in möglich. Immer dann, wenn Patient*innen oder Besucher*innen registriert und verwaltet werden müssen.
 Die Datensätze werden auch in eine stabsfreundliche Statistik ausgewertet und dargestellt. Ein Zugriff von außen ist möglich, muss aber technisch realisiert werden (s. Unten).
 
 
+## Getting Startet
 
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ### Vorraussetzungen
 
@@ -69,7 +66,7 @@ Passwort: `test`
 
 ### Konten anlegen
 
-1. `/register.php` aufrufen und neuen Benutzer anlegen
+1. `/register.php` aufrufen und neuen Benutzer*in anlegen
 2. über die CLI der Datenbank oder phpMyAdmin den test Benutzer löschen.
 
 
@@ -78,7 +75,7 @@ Passwort: `test`
   
 Änderungsübersicht:
 - Lageübersichtsseite hinzugekommen. Hier findet ihr alle Infos zum Einsatz, sowie die Downloads.
-- Der SanBereich hat eine eigene Unterseite bekommen wo nur Patienten aus dem SanBereich angezeigt werden.
+- Der SanBereich hat eine eigene Unterseite bekommen wo nur Patient*innen aus dem SanBereich angezeigt werden.
 - Anpassung Berechnung der Statistik: Ausgebuchte Patient*innen werden in entsprechenden Bereichen nicht mehr mitgezählt.
 
 
@@ -86,8 +83,8 @@ Passwort: `test`
 <!-- ROADMAP -->
 ## Was ist geplant?
 
-- Patienten können mehrfach ein und ausgebucht werden und bekommen eine Historie.
-- Seite zum schnelleren Ausbuchen von Patienten zum Einsatzende.
+- Patient*innen können mehrfach ein und ausgebucht werden und bekommen eine Historie.
+- Seite zum schnelleren Ausbuchen von Patient*innen zum Einsatzende.
 - Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.
 - Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn 😏 )
 - UHS-Modul (ähnlich wie SanBereich mit angepasstem Datensatz (Kostenträger, Fachrichtung, Meldebild etc.)

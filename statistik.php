@@ -33,8 +33,9 @@ if (!isset($_SESSION['loggedin'])) {
     <h2> Aktuelle Statistik</h2>
 
     <?php
-    //Datenbankdaten anpassen
-    include("dbConfig.php");
+   
+    include("./incs/db_credentials.inc.php");
+    $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);;
 
     $statement = $pdo->prepare("SELECT * FROM patienten WHERE ausgang <= CURDATE()");
     $statement->execute(array());
@@ -50,8 +51,9 @@ if (!isset($_SESSION['loggedin'])) {
       </div>
 
       <?php
-      //Datenbankdaten anpassen
-      include("dbConfig.php");
+      
+      include("./incs/db_credentials.inc.php");
+      $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);
 
       $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
       $statement->execute(array('Aula'));
@@ -95,8 +97,8 @@ if (!isset($_SESSION['loggedin'])) {
         </div>
 
         <?php
-        //Datenbankdaten anpassen
-        include("dbConfig.php");
+        include("./incs/db_credentials.inc.php");
+        $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);
 
         $statement = $pdo->prepare("SELECT * FROM patienten WHERE TMittel = ?");
         $statement->execute(array('RTW'));
@@ -121,7 +123,8 @@ if (!isset($_SESSION['loggedin'])) {
 
         ?>
 <?php
-include("dbConfig.php");
+include("./incs/db_credentials.inc.php");
+$pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);
 
 $statement = $pdo->prepare("SELECT * FROM patienten");
 $statement->execute(array());

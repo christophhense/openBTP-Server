@@ -1,7 +1,11 @@
 <?php
 session_start();
 // Change this to your connection info.
-include("dbConfig.php");
+
+include ("./incs/db_credentials.inc.php");
+
+$con = new mysqli($db_host, $db_user, $db_password, $db_name); 
+
 if ( mysqli_connect_errno() ) {
 
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());

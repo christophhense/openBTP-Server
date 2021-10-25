@@ -36,18 +36,19 @@ if (!isset($_SESSION['loggedin'])) {
 
 		<p>
 		Änderungsübersicht:<br>
-			- Suchfunktion komplett in die Übersichtstabelle übernommen. Wichtig hierbei: Es wird nicht mehr direkt in der Datenbank gesucht, sondern in der bereits geladenen Tabelle.
-				Das ist deutlich schneller bei großen Datenmengen, jedoch ist ein parallel eingetragener Patient nicht direkt zu finden. Erst nach erneutem laden der Seite erscheint dieser
-				in der Tabelle. <br>
-			- Das Design wurde noch mal deutlich überarbeitet. Sollte noch mal deutlich simpler und übersichtlicher geworden sein.<br>
-			- Externe Statistik in der Box-Version von außen erreichbar. Voraussetzung ist eine Internetverbindung am Einsatzort.<br>
 			- Lageübersichtsseite hinzugekommen. Hier findet ihr alle Infos zum Einsatz, sowie die Downloads.<br>
 			- Der SanBereich hat eine eigene Unterseite bekommen wo nur Patienten aus dem SanBereich angezeigt werden.<br>
+			- Verinfachte installation über eine /install.php
 		</p>
 		<p>
 			Geplante Änderungen / Neuerungen:<br>
+			- Patient*innen können mehrfach ein und ausgebucht werden und bekommen eine Historie.<br>
+			- Rechtesystem und Unterseite mit Einstellungen und Stammdatenpflege<br>
 			- Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.<br>
 			- Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn ;) )<br>
+			
+			
+
 
 		</p>
 		<p><a href="./sanbereich.php">Hier geht es zum SanBereich</a></p>

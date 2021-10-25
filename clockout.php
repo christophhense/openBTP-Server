@@ -9,22 +9,24 @@ if (!isset($_SESSION['loggedin'])) {
 ?>
 <?php
 
-include ('dbConfig.php');
+include ('./incs/db_credentials.inc.php');
+$con = new mysqli($db_host, $db_user, $db_password, $db_name); 
+
 $ID = $_GET["selectedID"];
 
 
-$sql = "UPDATE patienten SET ausgang = now() WHERE id = $ID";
+$sql = "UPDATE patienten SET ausgang = now() WHERE id = ?";
 $statement = $con->prepare($sql);
-$statement->bind_param('ssi', $id);
+$statement->bind_param('s', $ID );
  
 $statement->execute();
 
 
 
 if (mysqli_query($con, $sql)) {
-    echo "Patient status updated";
+    echo "Record updated successfully";
   } else {
-    echo "Error updating patient: " . mysqli_error($con);
+    echo "Error updating record: " . mysqli_error($con);
   }
   
   mysqli_close($con);

@@ -9,13 +9,14 @@ if (!isset($_SESSION['loggedin'])) {
 ?>
 <?php
 
-include ('dbConfig.php');
+include ('./incs/db_credentials.inc.php');
+$con = new mysqli($db_host, $db_user, $db_password, $db_name); 
 $ID = $_GET["selectedID"];
 
 
-$sql = "DELETE FROM patienten WHERE ID = '$ID'";
+$sql = "DELETE FROM patienten WHERE ID = ?";
 $statement = $con->prepare($sql);
-$statement->bind_param('i', $ID);
+$statement->bind_param('s', $ID);
  
 $statement->execute();
 

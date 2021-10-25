@@ -85,8 +85,8 @@ if (!isset($_SESSION['loggedin'])) {
 
     <?php
 
-    include("dbConfig.php");
-
+    include("./incs/db_credentials.inc.php");
+    $con = new mysqli($db_host, $db_user, $db_password, $db_name);
 
     if (mysqli_connect_error()) {
       die('Connect Error (' . mysqli_connect_errno() . ') '
@@ -97,7 +97,7 @@ if (!isset($_SESSION['loggedin'])) {
     if ($result->num_rows > 0) {
       // output
       while ($row = $result->fetch_assoc()) {
-        echo "<tr><td id = 'patID'>" . $row["id"] . "</td><td>" . $row["vorname"] . "</td><td>" . $row["nachname"] . "</td><td>"
+        echo "<tr><td class='patID'>" . $row["id"] . "</td><td>" . $row["vorname"] . "</td><td>" . $row["nachname"] . "</td><td>"
           . $row["geburtsdatum"] . "</td><td>" . $row["adresse"] . "</td><td>" . $row["telefon"] . "</td><td>" . $row["erkrankungen"] . "</td><td>" . $row["medis"] . "</td><td>" . $row["medisgenug"] . "</td><td>" . $row["material"] . "</td><td>" . $row["TMittel"] . "</td><td>" . $row["mobility"] . "</td><td>" . $row["bemerkungen"] . "</td><td>" . $row["ort"] . "</td><td>" . $row["eingang"] . "</td>
 </tr>";
       }

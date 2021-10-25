@@ -1,6 +1,7 @@
 <?php
 
-  include('dbConfig.php');
+  include('./incs/db_credentials.inc.php');
+  $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
   $ID = $_GET["selectedID"];
 
   $sql = "SELECT * FROM patienten WHERE ID = $ID";

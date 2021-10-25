@@ -93,7 +93,8 @@ if (!isset($_SESSION['loggedin'])) {
 <div class="container">
   <?php
 
-  include('dbConfig.php');
+  include('./incs/db_credentials.inc.php');
+  $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
   $ID = $_GET["selectedID"];
 
   $sql = "SELECT * FROM patienten WHERE ID = $ID";
@@ -129,12 +130,12 @@ if (!isset($_SESSION['loggedin'])) {
     <a class="dropdown">
       <button onclick="extendDropdown()" class="dropbtn">Aufenthaltsraum ändern</button>
       <div id="myDropdown" class="dropdown-content">
-        <a href="/changeroom.php?selectedID=<? echo $ID ?>&room=Aula">Aula</a>
-        <a href="/changeroom.php?selectedID=<? echo $ID ?>&room=Sporthalle">Sporthalle</a>
-        <a href="/changeroom.php?selectedID=<? echo $ID ?>&room=Turnhalle1">Turnhalle 1</a>
-        <a href="/changeroom.php?selectedID=<? echo $ID ?>&room=Turnhalle2">Turnhalle 2</a>
-        <a href="/changeroom.php?selectedID=<? echo $ID ?>&room=Turnhalle3">Turnhalle 3</a>
-        <a href="/changeroom.php?selectedID=<? echo $ID ?>&room=SanBereich">SanBereich</a>
+        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=Aula">Aula</a>
+        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=Sporthalle">Sporthalle</a>
+        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle1">Turnhalle 1</a>
+        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle2">Turnhalle 2</a>
+        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle3">Turnhalle 3</a>
+        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=SanBereich">SanBereich</a>
       </div>
 </a>
     

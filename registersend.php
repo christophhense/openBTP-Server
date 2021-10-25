@@ -1,5 +1,6 @@
 <?php
-include("dbConfig.php");
+include("./incs/db_credentials.inc.php");
+$con = new mysqli($db_host, $db_user, $db_password, $db_name); 
 if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
@@ -30,6 +31,7 @@ if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email) VALU
 	$stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
 	$stmt->execute();
 	echo 'Erfolgreich regristriert!';
+	
 } else {
 	echo 'Could not prepare statement!';
 }

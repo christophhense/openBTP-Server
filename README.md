@@ -2,7 +2,7 @@
   <h3 align="center">openBTP-Server</h3>
 
   <p align="center">
-    Eine übersichtliche Lösung, um die Registratur und Auswertung von Patient*innen im Betreuungsplatzeinsatz zu übernehmen
+    Eine übersichtliche Lösung, um die Registratur und Auswertung von Patient:innen im Betreuungsplatzeinsatz zu übernehmen
 
 </p>
 
@@ -35,8 +35,8 @@
 
 ## Über das Projekt
 
-Der openBTP-Server soll das schnelle und effektive Patient*innenmanagement am Einsatzort ermöglichen. Die Grundidee entstand aus einem geplanten größeren Betreuungseinsatz im Rahmen einer
-Bombenevakuierung. Auf genau diesen Einsatz ist das Projekt zugeschnitten. Aber auch eine Anwendung in anderen Bereichen in möglich. Immer dann, wenn Patient*innen oder Besucher*innen registriert und verwaltet werden müssen.
+Der openBTP-Server soll das schnelle und effektive Patient:innenmanagement am Einsatzort ermöglichen. Die Grundidee entstand aus einem geplanten größeren Betreuungseinsatz im Rahmen einer
+Bombenevakuierung. Auf genau diesen Einsatz ist das Projekt zugeschnitten. Aber auch eine Anwendung in anderen Bereichen in möglich. Immer dann, wenn Patient:innen oder Besucher:innen registriert und verwaltet werden müssen.
 Die Datensätze werden auch in eine stabsfreundliche Statistik ausgewertet und dargestellt. Ein Zugriff von außen ist möglich, muss aber technisch realisiert werden (s. Unten).
 
 
@@ -54,11 +54,7 @@ evtl. phpMyAdmin um die Einrichtung zu verwalten.
 
 ### Ans Laufen Bringen
 
-1. Datenbankdaten in folgenden Dateien anpassen: `dbConfig.php` und `statistik.php`
-2. `benutzer.sql` und `patienten.sql` in Datenbank importieren um Tabllen und einen Testbenutzer zu erstellen.
-3. SQL
-  Dateien löschen.
-4. Dateien in den Webordner bewegen.
+1. `/install.php` aufrufen und Assistenten durchlaufen.
 
 ### Erste Anmeldung
 
@@ -67,8 +63,9 @@ Passwort: `test`
 
 ### Konten anlegen
 
-1. `/register.php` aufrufen und neuen Benutzer*in anlegen
-2. über die CLI der Datenbank oder phpMyAdmin den test Benutzer löschen.
+1. Mit Testbenutzer anmelden
+2. `/register.php` aufrufen und neuen Benutzer:in anlegen
+3. über die CLI der Datenbank oder phpMyAdmin den test Benutzer löschen.
 
 
 
@@ -76,17 +73,18 @@ Passwort: `test`
   
 Änderungsübersicht:
 - Lageübersichtsseite hinzugekommen. Hier findet ihr alle Infos zum Einsatz, sowie die Downloads.
-- Der SanBereich hat eine eigene Unterseite bekommen wo nur Patient*innen aus dem SanBereich angezeigt werden.
-- Anpassung Berechnung der Statistik: Ausgebuchte Patient*innen werden in entsprechenden Bereichen nicht mehr mitgezählt.
+- Der SanBereich hat eine eigene Unterseite bekommen wo nur Patient:innen aus dem SanBereich angezeigt werden.
+- Anpassung Berechnung der Statistik: Ausgebuchte Patient:innen werden in entsprechenden Bereichen nicht mehr mitgezählt.
+- Verinfachte installation über eine `/install.php`
 
 
 
 <!-- ROADMAP -->
 ## Was ist geplant?
 
-- Verinfachte installation über eine `/install.php`
-- Patient*innen können mehrfach ein und ausgebucht werden und bekommen eine Historie.
-- Seite zum schnelleren Ausbuchen von Patient*innen zum Einsatzende.
+- Patient:innen können mehrfach ein und ausgebucht werden und bekommen eine Historie.
+- Rollen und entsprechende Verwaltunsmöglichkeiten
+- Seite zum schnelleren Ausbuchen von Patient:innen zum Einsatzende.
 - Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.
 - Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn 😏 )
 - UHS-Modul (ähnlich wie SanBereich mit angepasstem Datensatz (Kostenträger, Fachrichtung, Meldebild etc.)

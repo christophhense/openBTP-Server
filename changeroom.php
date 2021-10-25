@@ -9,11 +9,13 @@ if (!isset($_SESSION['loggedin'])) {
 ?>
 <?php
 
-include ('dbConfig.php');
+include ('./incs/db_credentials.inc.php');
+$con = new mysqli($db_host, $db_user, $db_password, $db_name); 
+
 $ID = $_GET["selectedID"];
 $room = $_GET["room"];
 
-$sql = "UPDATE patienten SET ort = '$room' WHERE ID = '$ID'";
+$sql = "UPDATE patienten SET ort = ? WHERE ID = '$ID'";
 $statement = $con->prepare($sql);
 $statement->bind_param('s', $room);
  

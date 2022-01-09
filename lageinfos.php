@@ -19,12 +19,12 @@ if (!isset($_SESSION['loggedin'])) {
 	<nav class="navtop">
 		<div>
 			<h1>BTP-Server</h1>
-			<a href="home.php">Startseite</a>
-			<a href="/eingabe.php">Neuer Patient</a>
-			<a href="/tabelle.php">Übersicht Patienten</a>
-			<a href="/statistik.php">Statistik</a>
-			<a href="/lageinfos.php">Lageinfos</a>
-			<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+			<a href="./home.php">Startseite</a>
+			<a href="./eingabe.php">Neuer Patient</a>
+			<a href="./tabelle.php">Übersicht Patienten</a>
+			<a href="./statistik.php">Statistik</a>
+			<a href="./lageinfos.php">Lageinfos</a>
+			<a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 		</div>
 	</nav>
 	<div class="content">

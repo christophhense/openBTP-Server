@@ -178,7 +178,7 @@ function install_get_current_path($filename)
                             <label for="database">Datenbank Name</label>
                         </div>
                         <div class="col-75">
-                        <input type="text" size="30" maxlength="255" name="frm_db_dbname" value="<?php print $my_db;?>"
+                        <input type="text" size="30" maxlength="255" name="frm_db_dbname" value="<?php print $my_db;?>">
                         </div>
                     </div>
                     <div class="row">

@@ -36,20 +36,16 @@ if (!isset($_SESSION['loggedin'])) {
 
 		<p>
 		Änderungsübersicht:<br>
-			- Lageübersichtsseite hinzugekommen. Hier findet ihr alle Infos zum Einsatz, sowie die Downloads.<br>
+			- Lageübersichtsseite hinzugekommen. Hier findet Ihr alle Infos zum Einsatz, sowie die Downloads.<br>
 			- Der SanBereich hat eine eigene Unterseite bekommen wo nur Patienten aus dem SanBereich angezeigt werden.<br>
-			- Verinfachte installation über eine /install.php
+			- Vereinfachte Installation über eine ./install.php.
 		</p>
 		<p>
 			Geplante Änderungen / Neuerungen:<br>
-			- Patient*innen können mehrfach ein und ausgebucht werden und bekommen eine Historie.<br>
+			- Patient*innen können mehrfach ein- und ausgebucht werden und bekommen eine Historie.<br>
 			- Rechtesystem und Unterseite mit Einstellungen und Stammdatenpflege<br>
 			- Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.<br>
 			- Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn ;) )<br>
-			
-			
-
-
 		</p>
 		<p><a href="./sanbereich.php">Hier geht es zum SanBereich</a></p>
 		

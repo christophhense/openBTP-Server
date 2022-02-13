@@ -130,7 +130,7 @@ $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_p
 $statement = $pdo->prepare("SELECT * FROM patienten");
 $statement->execute(array());
 $anzahl_pat = $statement->rowCount();
-echo "<h3>Anzahl registrieter Patienten insgesamt: $anzahl_pat </h3> </p>";
+echo "<h3>Anzahl registrierter Patienten insgesamt: $anzahl_pat </h3> </p>";
 ?>
       </div>
     </div>

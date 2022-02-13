@@ -74,22 +74,17 @@ if (!isset($_SESSION['loggedin'])) {
 
 
 <body class="body">
-
-
-<nav class="navtop">
+	<nav class="navtop">
 		<div>
 			<h1>BTP-Server</h1>
-      <a href="/home.php">Startseite</a>
-			<a href="/eingabe.php">Neuer Patient</a>
-			<a href="/tabelle.php">Übersicht Patienten</a>
-			<a href="/statistik.php">Statistik</a>
-			<a href="/lageinfos.php">Lageinfos</a>
-			<a href="/logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+			<a href="./home.php">Startseite</a>
+			<a href="./eingabe.php">Neuer Patient</a>
+			<a href="./tabelle.php">Übersicht Patienten</a>
+			<a href="./statistik.php">Statistik</a>
+			<a href="./lageinfos.php">Lageinfos</a>
+			<a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 		</div>
-  </nav>
-
-
-
+	</nav>
 <div class="container">
   <?php
 
@@ -130,12 +125,12 @@ if (!isset($_SESSION['loggedin'])) {
     <a class="dropdown">
       <button onclick="extendDropdown()" class="dropbtn">Aufenthaltsraum ändern</button>
       <div id="myDropdown" class="dropdown-content">
-        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=Aula">Aula</a>
-        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=Sporthalle">Sporthalle</a>
-        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle1">Turnhalle 1</a>
-        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle2">Turnhalle 2</a>
-        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle3">Turnhalle 3</a>
-        <a href="/changeroom.php?selectedID=<?php echo $ID ?>&room=SanBereich">SanBereich</a>
+        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Aula">Aula</a>
+        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Sporthalle">Sporthalle</a>
+        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle1">Turnhalle 1</a>
+        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle2">Turnhalle 2</a>
+        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle3">Turnhalle 3</a>
+        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=SanBereich">SanBereich</a>
       </div>
 </a>
     
@@ -143,7 +138,7 @@ if (!isset($_SESSION['loggedin'])) {
     <a class="dropdown">
       <button onclick="extendDropdown2()" class="dropbtn">Patient löschen</button>
       <div id="myDropdown2" class="dropdown-content">
-        <a href="/deletepat.php?selectedID=<?php echo $ID ?>">Sicher?</a>
+        <a href="./deletepat.php?selectedID=<?php echo $ID ?>">Sicher?</a>
       </div>
 </a>
     

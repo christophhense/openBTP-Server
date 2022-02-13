@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const table = document.querySelector("#patienten");
   table.addEventListener("click", e => {
     const row = e.target.closest("tr");
-    row.style.backgroundColor = "yellow";
+    
     const patId = row.querySelector(".patID").innerText;
     window.location.href = "patinfo.php?selectedID=" + patId;
   });

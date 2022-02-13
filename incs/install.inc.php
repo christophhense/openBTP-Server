@@ -1,7 +1,7 @@
 <?php
 
 function get_version() {
-	return "ALPHA v.0.4.1";
+	return "ALPHA v.0.5.0";
 }
 function open_database($host, $database, $user, $password) {
 	try {

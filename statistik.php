@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggedin'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="refresh" content="5" >
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  <link rel="stylesheet" href="./fa/css/all.css">
 </head>
 
 <body>
@@ -38,7 +38,7 @@ if (!isset($_SESSION['loggedin'])) {
     include("./incs/db_credentials.inc.php");
     $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);;
 
-    $statement = $pdo->prepare("SELECT * FROM patienten WHERE ausgang <= CURDATE()");
+    $statement = $pdo->prepare("SELECT * FROM patienten WHERE anwesend = TRUE");
     $statement->execute(array());
     $anzahl_pat = $statement->rowCount();
     echo "<h3>Aktuelle Anzahl Patient:innen innerhalb BTP: $anzahl_pat </h3>";
@@ -56,32 +56,32 @@ if (!isset($_SESSION['loggedin'])) {
       include("./incs/db_credentials.inc.php");
       $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
       $statement->execute(array('Aula'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>Aula: $anzahl_pat </p>";
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
       $statement->execute(array('Sporthalle'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>Sporthalle: $anzahl_pat </p>";
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
       $statement->execute(array('Turnhalle1'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>Turnhalle 1: $anzahl_pat </p>";
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
       $statement->execute(array('Turnhalle2'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>Turnhalle 2: $anzahl_pat </p>";
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
       $statement->execute(array('Turnhalle3'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>Turnhalle 3: $anzahl_pat </p>";
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND ausgang <= CURDATE()");
+      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
       $statement->execute(array('SanBereich'));
       $anzahl_pat = $statement->rowCount();
       echo "<p>San Bereich: $anzahl_pat </p>";

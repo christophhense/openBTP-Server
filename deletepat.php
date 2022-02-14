@@ -14,9 +14,15 @@ $con = new mysqli($db_host, $db_user, $db_password, $db_name);
 $ID = $_GET["selectedID"];
 
 
+$sql = "DELETE FROM patlog WHERE PatID = ?";
+$statement = $con->prepare($sql);
+$statement->bind_param('i', $ID);
+ 
+$statement->execute();
+
 $sql = "DELETE FROM patienten WHERE ID = ?";
 $statement = $con->prepare($sql);
-$statement->bind_param('s', $ID);
+$statement->bind_param('i', $ID);
  
 $statement->execute();
 

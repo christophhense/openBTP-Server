@@ -22,7 +22,7 @@ $stmt->close();
 		<meta charset="utf-8">
 		<title>Profilübersicht</title>
 		<link href="style.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		<link rel="stylesheet" href="./fa/css/all.css">
 	</head>
 	<body class="loggedin">
 	<nav class="navtop">

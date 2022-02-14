@@ -23,6 +23,7 @@ function install_get_current_path($filename)
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <link href="./style.css" rel="stylesheet">
+    <link rel="stylesheet" href="./fa/css/all.css">
 </head>
 
 <body>
@@ -100,10 +101,10 @@ function install_get_current_path($filename)
                                     <li>
                                        Es wird empfohlen die install.php zu entfernen oder ggf die Rechte anzupasseen um eine ungewollte neuinstallation zu verhindern!
                                     </li>
-                                    <p>Benutzer: test</p>
-                                    <p>Passwort: test</p>
+                                    <p>Benutzer: btpuser</p>
+                                    <p>Passwort: bptuser</p>
                                     <h3>Nach erstem Login unmittelbar /register.php aufrufen und neuen Benutzer anlegen!</h3>
-                                    <h3>Testbenutzer danach löschen!</h3>
+                                    <h3>Den Benutzer btpuser danach löschen!</h3>
                                   
                                 
         </div>

@@ -37,7 +37,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`id`, `username`, `password`, `email`) VALUES
-(1, 'test', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'test@test.com');
+(1, 'btpuser', '$2y$10$MHcrR90hfTlkmOkqyi11u.F0mkd9vuwlD3KP5o4OgQTVrvQsQnwF6', 'btpuser@localhost.local');
 
 --
 -- Indizes der exportierten Tabellen

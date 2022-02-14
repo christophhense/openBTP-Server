@@ -30,8 +30,18 @@ if (!empty($vorname)) {
                     die("Connection failed: " . $con->connect_error);
                 } else {
                     $sql = "INSERT INTO patienten (vorname, nachname, geburtsdatum, adresse, telefon, erkrankungen, medis, medisgenug, material, TMittel, mobility, bemerkungen, ort)
-values ('$vorname','$nachname','$geburtsdatum','$adresse','$telefon','$erkrankungen','$medis','$medisgenug','$material','$TMittel','$mobility','$bemerkungen','$ort')";
+                                            values ('$vorname','$nachname','$geburtsdatum','$adresse','$telefon','$erkrankungen','$medis','$medisgenug','$material','$TMittel','$mobility','$bemerkungen','$ort')";
+                                            
                     if ($con->query($sql)) {
+                        
+
+                                $last_id = $con->insert_id;
+                                $sql = "INSERT INTO patlog (Event,PatID) values ('Patient neu angelegt','$last_id')";
+                                $con->query($sql);
+                                
+
+
+
                         echo "New patient is inserted sucessfully";
                     } else {
                         echo "Error: " . $sql . "
@@ -55,5 +65,6 @@ values ('$vorname','$nachname','$geburtsdatum','$adresse','$telefon','$erkrankun
     echo "Vorname fehlt";
     die();
 }
+
 ?>
 <meta http-equiv="refresh" content="0; url=./eingabe.php">

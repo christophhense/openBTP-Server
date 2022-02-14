@@ -12,8 +12,9 @@ if (!isset($_SESSION['loggedin'])) {
 
     <title>Übersicht Abschnitt Sanität</title>
     <meta content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="5" >
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
 
 </head>
 
@@ -99,7 +100,7 @@ if (!isset($_SESSION['loggedin'])) {
                 die('Connect Error (' . mysqli_connect_errno() . ') '
                     . mysqli_connect_error());
             }
-            $sql = "SELECT id, vorname, nachname, geburtsdatum, adresse, telefon, erkrankungen, medis, medisgenug, material, TMittel, mobility, bemerkungen FROM patienten WHERE ort = 'SanBereich'";
+            $sql = "SELECT id, vorname, nachname, geburtsdatum, adresse, telefon, erkrankungen, medis, medisgenug, material, TMittel, mobility, bemerkungen FROM patienten WHERE ort = 'SanBereich' AND anwesend = TRUE";
             $result = $con->query($sql);
             if ($result->num_rows > 0) {
                 // output
@@ -130,7 +131,7 @@ if (!isset($_SESSION['loggedin'])) {
         const table = document.querySelector("#patienten");
         table.addEventListener("click", e => {
             const row = e.target.closest("tr");
-            row.style.backgroundColor = "yellow";
+            
             const patId = row.querySelector(".patID").innerText;
             window.location.href = "patinfo.php?selectedID=" + patId;
         });

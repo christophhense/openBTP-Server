@@ -21,10 +21,18 @@ $ID = $_GET["selectedID"];
 
 $sql = "UPDATE patienten SET ausgang = now() WHERE id = ?";
 $statement = $con->prepare($sql);
-$statement->bind_param('s', $ID );
+$statement->bind_param('i', $ID );
  
 $statement->execute();
 
+$sql = "UPDATE patienten SET anwesend = FALSE WHERE ID = ? ";
+$statement = $con->prepare($sql);
+$statement->bind_param('i',$ID);
+$statement->execute();
+
+$sql = "INSERT INTO patlog (Event,PatID) values ('Patient ausgestempelt','$ID')";
+
+$con->query($sql);
 mysqli_close($con);
 
 echo '<script type="text/javascript">',

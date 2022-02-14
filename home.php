@@ -14,7 +14,7 @@ if (!isset($_SESSION['loggedin'])) {
 	<meta charset="utf-8">
 	<title>BTP_Server</title>
 	<link href="style.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	<link rel="stylesheet" href="./fa/css/all.css">
 	
 </head>
 
@@ -51,17 +51,18 @@ window.open("SanBereich.php","_blank", "height=1080,width=1920,fullscreen=yes,to
 
 		<p>
 		Änderungsübersicht:<br>
-			- Vereinfachte Installation über eine ./install.php.
+			- Patient:innen können mehrfach ein- und ausgebucht werden und bekommen eine Historie<br>
+			- Freitexteinträge in den Verlauf von Patient:innen
 		</p>
 		<p>
 			Geplante Änderungen / Neuerungen:<br>
-			- Patient:innen können mehrfach ein- und ausgebucht werden und bekommen eine Historie.<br>
 			- Rechtesystem und Unterseite mit Einstellungen und Stammdatenpflege<br>
+			- Exportfunktion <br>
 			- Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.<br>
 			- Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn ;) )<br>
 		</p>
-		<p><button onclick="openSanBereich()" class="">Übersichtsseite Sanität</button> </p>
-		<p><button onclick="openFastCheckOut()" class="">Schnelles Ausstempeln zu Einsatzende</button> </p>
+		<p><button onclick="openSanBereich()" class="">Übersichtsseite Sanität</button><br><br><button onclick="openFastCheckOut()" class="">Schnelles Ausstempeln zu Einsatzende</button> </p>
+		
 		
 		
 	</div>

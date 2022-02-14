@@ -23,15 +23,27 @@
     Zugewiesener Aufenthaltsraum: " . $row["ort"] . "<br>
     Bemerkungen: " . $row["bemerkungen"] . "<br>
     Zeitstempel Regristatur: " . $row["eingang"] . "<br>
-    Zeitstempel Ausgang: " . $row["ausgang"] . "<p>";
+    Zeitstempel Ausgang: " . $row["ausgang"] . "<p></tr>";
   }
+$sql = "SELECT EventID, Event, timestamp FROM patlog WHERE PatID = $ID";
+$result = mysqli_query($con, $sql);
+echo "
+<br>
+<p><h3>Verlauf:</h3></p>
+<table>
+<tr><th>Uhrzeit</th>
+<th>Eintrag</th></tr>
+";
+while ($row = mysqli_fetch_assoc($result)) {
 
+echo "<tr><td>"  . $row["timestamp"] . " :</td><td> " . $row["Event"] . "</td></tr>";
 
-
+}
+echo"</table>";
   ?>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  
+  
   <script>
-
 window.print();
  setTimeout(window.close, 500);
 

@@ -41,7 +41,8 @@ CREATE TABLE `patienten` (
   `bemerkungen` text CHARACTER SET utf8 NOT NULL,
   `mobility` text CHARACTER SET utf8 NOT NULL,
   `ID` int(11) NOT NULL,
-  `ausgang` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `ausgang` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `anwesend` boolean NOT NULL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --

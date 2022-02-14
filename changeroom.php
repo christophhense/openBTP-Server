@@ -1,3 +1,4 @@
+
 <?php
 
 session_start();
@@ -20,9 +21,12 @@ $statement = $con->prepare($sql);
 $statement->bind_param('si', $room, $ID);
  
 $statement->execute();
+$sql = "INSERT INTO patlog (Event,PatID) values ('Raum gewechselt zu $room','$ID')";
+
+$con->query($sql);
 
  mysqli_close($con);
 
 
 ?>
-<meta http-equiv="refresh" content="0; url=./tabelle.php">
+<html><script>window.history.back();</script></html>

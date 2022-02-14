@@ -1,7 +1,7 @@
 <?php
 
 function get_version() {
-	return "ALPHA v.0.5.0";
+	return "ALPHA v.0.5.1";
 }
 function open_database($host, $database, $user, $password) {
 	try {
@@ -63,16 +63,21 @@ function install($version, $option, $host, $name, $user, $password) {
 	$output_text = "";
 	switch ($option) {
 	case "install":	
-		do_sql_file("./sql/drop_database_patienten.sql");
 		do_sql_file("./sql/drop_database_accounts.sql");
+		do_sql_file("./sql/drop_database_patlog.sql");
+		do_sql_file("./sql/drop_database_patienten.sql");
+		do_sql_file("./sql/drop_database_patlog.sql");
 		do_sql_file("./sql/accounts.sql");
 		do_sql_file("./sql/patienten.sql");	
+		do_sql_file("./sql/patlog.sql");
 		$output_text .= "<li> Datenbankinstallation abgeschlossen!";
 		$output_text .= write_conf($host, $name, $user, $password);
 		break;
 	case "reset_settings":
+		do_sql_file("./sql/drop_database_patlog.sql");
 		do_sql_file("./sql/drop_database_patienten.sql");
 		do_sql_file("./sql/patienten.sql");
+		do_sql_file("./sql/patlog.sql");
 		$output_text .= "<li> Patientendaten erfolgreich zurückgesetzt!</li>";
 		$output_text .= write_conf($host, $name, $user, $password);
 		break;

@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggedin'])) {
   <title>Patient:in</title>
   <meta content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  <link rel="stylesheet" href="./fa/css/all.css">
 </head>
 <script>
   function MenuCheckOut() {
@@ -22,6 +22,21 @@ if (!isset($_SESSION['loggedin'])) {
     const selectedID = urlParams.get('selectedID')
     window.location.href = "clockout.php?selectedID=" + selectedID;
 
+  }
+  function MenuCheckIn() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const selectedID = urlParams.get('selectedID')
+    window.location.href = "checkin.php?selectedID=" + selectedID;
+
+  }
+
+  function MenuLogEntry(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const selectedID = urlParams.get('selectedID')
+    window.location.href = "logentry.php?selectedID=" + selectedID;
+  
   }
 
   function MenuPrint() {
@@ -95,7 +110,7 @@ if (!isset($_SESSION['loggedin'])) {
 
   $sql = "SELECT * FROM patienten WHERE ID = $ID";
   $result = mysqli_query($con, $sql);
-  echo "<br>";
+  echo "<br><h3>Übersicht:</h3>";
 
   while ($row = mysqli_fetch_assoc($result)) {
     echo "<tr>";
@@ -109,20 +124,28 @@ if (!isset($_SESSION['loggedin'])) {
     Material: " . $row["material"] . "<br>
     Mobilität: " . $row["mobility"] . "<br></p>
     <p>Transportmittel: " . $row["TMittel"] . "<br>
-    Zugewiesener Aufenthaltsraum: " . $row["ort"] . "<br>
-    Bemerkungen: " . $row["bemerkungen"] . "<br>
-    Zeitstempel Regristatur: " . $row["eingang"] . "<br>
-    Zeitstempel Ausgang: " . $row["ausgang"] . "<p>";
+    Zuletzt zugewiesener Aufenthaltsraum: " . $row["ort"] . "<br>
+    Bemerkungen: " . $row["bemerkungen"] . "<br></p>";
   }
 
+  $sql = "SELECT EventID, Event, timestamp FROM patlog WHERE PatID = $ID";
+  $result = mysqli_query($con, $sql);
+  echo "
+  <br>
+  <p><h3>Verlauf:</h3></p>
+  <table>
 
+  ";
+  while ($row = mysqli_fetch_assoc($result)) {
+  
+  echo "<tr><td>"  . $row["timestamp"] . " :</td><td> " . $row["Event"] . "</td></tr>";
+  
+  }
+  echo"</table>";
 
   ?>
 </div>
   <div>
-    
-    <a> <button onclick="MenuCheckOut()" class="button">Ausstempeln</button> </a>
-    
     <a class="dropdown">
       <button onclick="extendDropdown()" class="dropbtn">Aufenthaltsraum ändern</button>
       <div id="dropdownChangeRoom" class="dropdown-content">
@@ -133,16 +156,20 @@ if (!isset($_SESSION['loggedin'])) {
         <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle3">Turnhalle 3</a>
         <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=SanBereich">SanBereich</a>
       </div>
-</a>
-    
-    
+    </a>
+
+    <a><button onclick="MenuLogEntry()" class="button">Eintrag erstellen</button></a>
+
+    <a> <button onclick="MenuCheckIn()" class="button">Check-In</button> </a>
+
+    <a> <button onclick="MenuCheckOut()" class="button">Check-Out</button> </a>
+      
     <a class="dropdown">
       <button onclick="extendDropdown2()" class="dropbtn">Patient löschen</button>
       <div id="dropdownDelPat" class="dropdown-content">
         <a href="./deletepat.php?selectedID=<?php echo $ID ?>">Sicher?</a>
       </div>
-</a>
-    
+    </a>
     
     <a><button onclick="MenuPrint()" class="button">Drucken</button></a>
 

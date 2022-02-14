@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggedin'])) {
   <title>Patient:innen-Übersicht</title>
   <meta content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  <link rel="stylesheet" href="./fa/css/all.css">
 
 </head>
 <body>

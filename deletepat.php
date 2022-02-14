@@ -20,16 +20,9 @@ $statement->bind_param('s', $ID);
  
 $statement->execute();
 
-
-
-if (mysqli_query($con, $sql)) {
-    echo "Patient updated successfully";
-  } else {
-    echo "Error updating patient: " . mysqli_error($con);
-  }
-  
-  mysqli_close($con);
+ 
+mysqli_close($con);
 
 
 ?>
-<meta http-equiv="refresh" content="0; url=tabelle.php">
+<meta http-equiv="refresh" content="0; url=./tabelle.php">

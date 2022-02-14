@@ -56,4 +56,4 @@ values ('$vorname','$nachname','$geburtsdatum','$adresse','$telefon','$erkrankun
     die();
 }
 ?>
-<meta http-equiv="refresh" content="0; url=eingabe.php">
+<meta http-equiv="refresh" content="0; url=./eingabe.php">

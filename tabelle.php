@@ -10,7 +10,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 <head>
 
-  <title>Patientenübersicht</title>
+  <title>Patient:innen-Übersicht</title>
   <meta content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
@@ -24,7 +24,7 @@ if (!isset($_SESSION['loggedin'])) {
 			<h1>BTP-Server</h1>
       <a href="./home.php">Startseite</a>
 			<a href="./eingabe.php">Neuer Patient</a>
-			<a href="./tabelle.php">Übersicht Patienten</a>
+			<a href="./tabelle.php">Übersicht Patient:innen</a>
 			<a href="./statistik.php">Statistik</a>
 			<a href="./lageinfos.php">Lageinfos</a>
 			<a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
@@ -103,7 +103,7 @@ if (!isset($_SESSION['loggedin'])) {
       }
       echo "</table>";
     } else {
-      echo "Keine Patienten in Datenbank";
+      echo "Keine Patient:innen in Datenbank";
     }
     $con->close();
     ?>

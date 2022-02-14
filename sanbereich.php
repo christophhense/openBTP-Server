@@ -10,7 +10,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 <head>
 
-    <title>Patientenübersicht</title>
+    <title>Übersicht Abschnitt Sanität</title>
     <meta content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
@@ -18,16 +18,25 @@ if (!isset($_SESSION['loggedin'])) {
 </head>
 
 <body>
-    <script>function MenuRefresh() {
+    <script>
+    
+    function MenuRefresh() {
     location.reload();
-  }</script>
+    }
+
+    function CloseWindow() {
+    window.close();
+    }
+
+  </script>
 
 
     <nav class="navtop">
         <div>
             <h1>BTP-Server</h1>
-            <h1>Übersicht SanBereich</h1>
+            <h1>Übersicht Sanität</h1>
             <a onclick="MenuRefresh()">Aktualisieren</a>
+            <a onclick="CloseWindow()">Schließen</a>
 
             
         </div>
@@ -100,7 +109,7 @@ if (!isset($_SESSION['loggedin'])) {
                 }
                 echo "</table>";
             } else {
-                echo "Keine Patienten in Datenbank";
+                echo "Keine Patient:innen dem Abschnitt Sanität zugeordnet";
             }
             $con->close();
             ?>

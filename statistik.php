@@ -23,7 +23,7 @@ if (!isset($_SESSION['loggedin'])) {
       <h1>BTP-Server</h1>
       <a href="./home.php">Startseite</a>
       <a href="./eingabe.php">Neuer Patient</a>
-      <a href="./tabelle.php">Übersicht Patienten</a>
+      <a href="./tabelle.php">Übersicht Patient:innen</a>
       <a href="./statistik.php">Statistik</a>
       <a href="./lageinfos.php">Lageinfos</a>
       <a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
@@ -41,7 +41,7 @@ if (!isset($_SESSION['loggedin'])) {
     $statement = $pdo->prepare("SELECT * FROM patienten WHERE ausgang <= CURDATE()");
     $statement->execute(array());
     $anzahl_pat = $statement->rowCount();
-    echo "<h3>Aktuelle Anzahl Patienten innerhalb BTP: $anzahl_pat </h3>";
+    echo "<h3>Aktuelle Anzahl Patient:innen innerhalb BTP: $anzahl_pat </h3>";
 
     ?>
     <div>
@@ -130,7 +130,7 @@ $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_p
 $statement = $pdo->prepare("SELECT * FROM patienten");
 $statement->execute(array());
 $anzahl_pat = $statement->rowCount();
-echo "<h3>Anzahl registrierter Patienten insgesamt: $anzahl_pat </h3> </p>";
+echo "<h3>Anzahl registrierter Patient:innen insgesamt: $anzahl_pat </h3> </p>";
 ?>
       </div>
     </div>

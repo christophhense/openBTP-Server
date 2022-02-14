@@ -1,3 +1,6 @@
+
+
+
 <?php
 
 session_start();
@@ -8,6 +11,7 @@ if (!isset($_SESSION['loggedin'])) {
 }
 ?>
 <?php
+
 
 include ('./incs/db_credentials.inc.php');
 $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
@@ -21,16 +25,12 @@ $statement->bind_param('s', $ID );
  
 $statement->execute();
 
+mysqli_close($con);
 
-
-if (mysqli_query($con, $sql)) {
-    echo "Record updated successfully";
-  } else {
-    echo "Error updating record: " . mysqli_error($con);
-  }
-  
-  mysqli_close($con);
+echo '<script type="text/javascript">',
+     'window.history.back();',
+     '</script>'
 
 
 ?>
-<meta http-equiv="refresh" content="0; url=tabelle.php">
+

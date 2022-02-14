@@ -10,7 +10,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 <head>
 
-  <title>Patientendaten</title>
+  <title>Patient:in</title>
   <meta content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
@@ -28,7 +28,8 @@ if (!isset($_SESSION['loggedin'])) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const selectedID = urlParams.get('selectedID')
-    window.location.href = "printpatdata.php?selectedID=" + selectedID;
+    //window.location.href = "printpatdata.php?selectedID=" + selectedID;
+    window.open("printpatdata.php?selectedID=" + selectedID, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,");
   }
 
   function MenuRefresh() {
@@ -39,7 +40,7 @@ if (!isset($_SESSION['loggedin'])) {
   }
 
   function extendDropdown() {
-    document.getElementById("myDropdown").classList.toggle("show");
+    document.getElementById("dropdownChangeRoom").classList.toggle("show");
   }
 
   window.onclick = function(event) {
@@ -56,7 +57,7 @@ if (!isset($_SESSION['loggedin'])) {
   }
 
   function extendDropdown2() {
-    document.getElementById("myDropdown2").classList.toggle("show");
+    document.getElementById("dropdownDelPat").classList.toggle("show");
   }
   window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
@@ -79,7 +80,7 @@ if (!isset($_SESSION['loggedin'])) {
 			<h1>BTP-Server</h1>
 			<a href="./home.php">Startseite</a>
 			<a href="./eingabe.php">Neuer Patient</a>
-			<a href="./tabelle.php">Übersicht Patienten</a>
+			<a href="./tabelle.php">Übersicht Patient:innen</a>
 			<a href="./statistik.php">Statistik</a>
 			<a href="./lageinfos.php">Lageinfos</a>
 			<a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
@@ -124,7 +125,7 @@ if (!isset($_SESSION['loggedin'])) {
     
     <a class="dropdown">
       <button onclick="extendDropdown()" class="dropbtn">Aufenthaltsraum ändern</button>
-      <div id="myDropdown" class="dropdown-content">
+      <div id="dropdownChangeRoom" class="dropdown-content">
         <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Aula">Aula</a>
         <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Sporthalle">Sporthalle</a>
         <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle1">Turnhalle 1</a>
@@ -137,7 +138,7 @@ if (!isset($_SESSION['loggedin'])) {
     
     <a class="dropdown">
       <button onclick="extendDropdown2()" class="dropbtn">Patient löschen</button>
-      <div id="myDropdown2" class="dropdown-content">
+      <div id="dropdownDelPat" class="dropdown-content">
         <a href="./deletepat.php?selectedID=<?php echo $ID ?>">Sicher?</a>
       </div>
 </a>

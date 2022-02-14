@@ -32,6 +32,8 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script>
 
-$(document).ready(() => { window.print()})
+window.print();
+ setTimeout(window.close, 500);
+
   </script>
-<meta http-equiv="refresh" content="0; url=tabelle.php">
+

@@ -72,10 +72,10 @@ Passwort: `test`
 ## Aktueller Stand
   
 Änderungsübersicht:
-- Lageübersichtsseite hinzugekommen. Hier findet ihr alle Infos zum Einsatz, sowie die Downloads.
-- Der SanBereich hat eine eigene Unterseite bekommen wo nur Patient:innen aus dem SanBereich angezeigt werden.
-- Anpassung Berechnung der Statistik: Ausgebuchte Patient:innen werden in entsprechenden Bereichen nicht mehr mitgezählt.
-- Verinfachte installation über eine `/install.php`
+- Fix: SQL-Fehler nach Raumwechsel, Löschen etc.
+- Fix: Druckfenster überarbeitet und vereinfacht
+- Fix: Bereich Sanität in eigenes Fenster ausgelagert
+- Neu: Externe Seite zum schnelleren Ausstempeln der zu Betreuenden am Einsatzende
 
 
 
@@ -84,7 +84,6 @@ Passwort: `test`
 
 - Patient:innen können mehrfach ein und ausgebucht werden und bekommen eine Historie.
 - Rollen und entsprechende Verwaltunsmöglichkeiten
-- Seite zum schnelleren Ausbuchen von Patient:innen zum Einsatzende.
 - Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.
 - Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn 😏 )
 - UHS-Modul (ähnlich wie SanBereich mit angepasstem Datensatz (Kostenträger, Fachrichtung, Meldebild etc.)

@@ -79,13 +79,14 @@ Passwort: `btpuser`
 - Neu: Externe Seite zum schnelleren Ausstempeln der zu Betreuenden am Einsatzende
 - Neu: Patient:innen können mehrfach ein und ausgebucht werden und bekommen eine Historie
 - Neu: Freitexteinträge in den Verlauf von Patient:innen
+- Neu: Rechtesystem und Adminpanel zur Benutzerverwaltung
 
 
 
 <!-- ROADMAP -->
 ## Was ist geplant?
 
-- Rollen und entsprechende Verwaltunsmöglichkeiten
+- Stammdatenpflege
 - Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.
 - Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn 😏 )
 - UHS-Modul (ähnlich wie SanBereich mit angepasstem Datensatz (Kostenträger, Fachrichtung, Meldebild etc.)

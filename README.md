@@ -58,14 +58,14 @@ evtl. phpMyAdmin um die Einrichtung zu verwalten.
 
 ### Erste Anmeldung
 
-Benutzer: `test`
-Passwort: `test`
+Benutzer: `btpuser`
+Passwort: `btpuser`
 
 ### Konten anlegen
 
-1. Mit Testbenutzer anmelden
-2. `/register.php` aufrufen und neuen Benutzer:in anlegen
-3. über die CLI der Datenbank oder phpMyAdmin den test Benutzer löschen.
+1. Mit btpuser anmelden
+2. `/register.php` aufrufen und neue:n Benutzer:in anlegen
+3. über die CLI der Datenbank oder phpMyAdmin den btpuser löschen.
 
 
 
@@ -75,14 +75,16 @@ Passwort: `test`
 - Fix: SQL-Fehler nach Raumwechsel, Löschen etc.
 - Fix: Druckfenster überarbeitet und vereinfacht
 - Fix: Bereich Sanität in eigenes Fenster ausgelagert
+- Fix: Aufenthaltsänderung & Löschen aus Sanitätsbereich bringt einen in die Gesamtübersicht aller zu Betreuenden
 - Neu: Externe Seite zum schnelleren Ausstempeln der zu Betreuenden am Einsatzende
+- Neu: Patient:innen können mehrfach ein und ausgebucht werden und bekommen eine Historie
+- Neu: Freitexteinträge in den Verlauf von Patient:innen
 
 
 
 <!-- ROADMAP -->
 ## Was ist geplant?
 
-- Patient:innen können mehrfach ein und ausgebucht werden und bekommen eine Historie.
 - Rollen und entsprechende Verwaltunsmöglichkeiten
 - Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.
 - Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn 😏 )

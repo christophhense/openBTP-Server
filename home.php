@@ -87,12 +87,13 @@ require ("./incs/rights.php");
 		<p>
 			Änderungsübersicht:<br>
 			- Patient:innen können mehrfach ein- und ausgebucht werden und bekommen eine Historie<br>
-			- Freitexteinträge in den Verlauf von Patient:innen
+			- Freitexteinträge in den Verlauf von Patient:innen<br>
+			- Rechtesystem und Adminpanel zur Benutzerverwaltung
 			
 		</p>
 		<p>
 			Geplante Änderungen / Neuerungen:<br>
-			- Rechtesystem und Unterseite mit Einstellungen und Stammdatenpflege<br>
+			- Stammdatenpflege<br>
 			- Exportfunktion <br>
 			- Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.<br>
 			- Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn ;) )<br>

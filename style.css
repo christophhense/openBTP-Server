@@ -128,10 +128,18 @@ th {
   text-align: left;
   font-weight: bold;
 }
+.th-profile {
+  color: #000000;
+  background-color: #2032d4;
+  text-align: center;
+  font-weight: bold;
+
+}
 
 tr:nth-child(even) {
   background-color: #d4d4d4
 }
+
 
 .search-box {
   width: 100%;

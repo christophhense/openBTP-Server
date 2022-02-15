@@ -48,15 +48,15 @@ $stmt->close();
 					</tr>
 					<tr>
 						<td>Password:</td>
-						<td><?=$password?></td>
+						<td><?echo $password?></td>
 					</tr>
 					<tr>
 						<td>Email:</td>
-						<td><?=$email?></td>
+						<td><? echo $email?></td>
 					</tr>
 				</table>
 			</div>
 		</div>
-  </div>>
+  </div>
 	</body>
 </html>

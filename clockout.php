@@ -11,7 +11,8 @@ if (!isset($_SESSION['loggedin'])) {
 }
 ?>
 <?php
-
+require("./incs/rights.php");
+if ($usrpower >=3 ) {
 
 include ('./incs/db_credentials.inc.php');
 $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
@@ -37,8 +38,13 @@ mysqli_close($con);
 
 echo '<script type="text/javascript">',
      'window.history.back();',
-     '</script>'
+     '</script>';
 
+    } else {
+        echo "<script>alert('Du hast nicht genügend Rechte!');</script>";
 
+        
+    }
+    
 ?>
-
+<html><script>window.history.back();</script></html>

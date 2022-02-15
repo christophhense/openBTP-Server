@@ -4,6 +4,11 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: index.html');
 	exit;
 }
+require("./incs/rights.php");
+  if ($usrpower == 1) {
+	
+    header("Location: ./statistik.php");
+  }
 ?>
 <!DOCTYPE html>
 <html>

@@ -3,7 +3,13 @@ session_start();
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: index.html');
 	exit;
+
+  
 }
+require("./incs/rights.php");
+  if ($usrpower == 1) {
+    header("Location: ./statistik.php");
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +49,6 @@ if (!isset($_SESSION['loggedin'])) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const selectedID = urlParams.get('selectedID')
-    //window.location.href = "printpatdata.php?selectedID=" + selectedID;
     window.open("printpatdata.php?selectedID=" + selectedID, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,");
   }
 

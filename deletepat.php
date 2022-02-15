@@ -8,6 +8,9 @@ if (!isset($_SESSION['loggedin'])) {
 }
 ?>
 <?php
+require ('./incs/rights.php');
+
+if ($usrpower >= 4 ){
 
 include ('./incs/db_credentials.inc.php');
 $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
@@ -28,7 +31,11 @@ $statement->execute();
 
  
 mysqli_close($con);
-
+}else{
+	echo "<script>
+		alert('Nicht genügend Rechte!');
+	</script>";
+}
 
 ?>
 <meta http-equiv="refresh" content="0; url=./tabelle.php">

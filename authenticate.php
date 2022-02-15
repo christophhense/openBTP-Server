@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Change this to your connection info.
 
 include ("./incs/db_credentials.inc.php");
 
@@ -32,7 +31,13 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['username'];
             $_SESSION['id'] = $id;
-            header('Location: home.php');
+
+            require("./incs/rights.php");
+                if ($usrpower == 1){
+            header('Location: statistik.php');
+                }else{
+                    header('Location: home.php');
+                }
         } else {
 
             echo 'Incorrect username and/or password!';

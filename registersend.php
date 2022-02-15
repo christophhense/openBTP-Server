@@ -1,4 +1,12 @@
 <?php
+
+require('./incs/rights.php');
+
+if($usrpower < 9) {
+	header("Location: ./home.php");
+}
+
+
 include("./incs/db_credentials.inc.php");
 $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
 if (mysqli_connect_errno()) {
@@ -26,11 +34,11 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
 	if ($stmt->num_rows > 0) {
 		echo 'Benutzername bereits vorhanden!';
 	} else {
-if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)')) {
+if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email, power) VALUES (?, ?, ?, ?)')) {
 	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-	$stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
+	$stmt->bind_param('sssi', $_POST['username'], $password, $_POST['email'], $_POST['power']);
 	$stmt->execute();
-	echo 'Erfolgreich regristriert!';
+	header("Location: ./adminpanel.php");
 	
 } else {
 	echo 'Could not prepare statement!';

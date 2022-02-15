@@ -4,6 +4,11 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: index.html');
 	exit;
 }
+require("./incs/rights.php");
+  if ($usrpower == 1) {
+	
+    header("Location: ./statistik.php");
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,7 +44,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 
     <?php
-
+    if ($usrpower >= 3){
     include("./incs/db_credentials.inc.php");
     $con = new mysqli($db_host, $db_user, $db_password, $db_name);
 
@@ -47,7 +52,7 @@ if (!isset($_SESSION['loggedin'])) {
       die('Connect Error (' . mysqli_connect_errno() . ') '
         . mysqli_connect_error());
     }
-    $sql = "SELECT id, vorname, nachname, geburtsdatum FROM patienten";
+    $sql = "SELECT id, vorname, nachname, geburtsdatum FROM patienten WHERE anwesend = 1";
     $result = $con->query($sql);
     if ($result->num_rows > 0) {
       // output
@@ -61,6 +66,9 @@ if (!isset($_SESSION['loggedin'])) {
       echo "Keine Patient:innen in Datenbank";
     }
     $con->close();
+  } else {
+      echo "<script>window.close();</script>";
+        } 
     ?>
 
 

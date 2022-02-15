@@ -5,13 +5,31 @@ session_start();
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: index.html');
 	exit;
+
 }
+require("./incs/rights.php");
+  if ($usrpower == 1) {
+	
+    header("Location: ./statistik.php");
+  }
+
+require("./incs/rights.php");
 ?>
 
 <script>  
+var js_usropwer = <?php echo $usrpower ?>;
+
+    if(js_usropwer <=3){
+      alert("Du hast leider nicht genügend Rechte!");
+      window.history.back();
+
+    }
+
     function MenuGoBack(){
     window.history.back();
     }
+
+
 </script>
 <html>
   <meta charset="utf-8" >

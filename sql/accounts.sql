@@ -29,15 +29,16 @@ CREATE TABLE `accounts` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `email` varchar(100) NOT NULL
+  `email` varchar(100) NOT NULL,
+  `power` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `username`, `password`, `email`) VALUES
-(1, 'btpuser', '$2y$10$MHcrR90hfTlkmOkqyi11u.F0mkd9vuwlD3KP5o4OgQTVrvQsQnwF6', 'btpuser@localhost.local');
+INSERT INTO `accounts` (`id`, `username`, `password`, `email`, `power`) VALUES
+(1, 'btpuser', '$2y$10$MHcrR90hfTlkmOkqyi11u.F0mkd9vuwlD3KP5o4OgQTVrvQsQnwF6', 'btpuser@localhost.local', '9');
 
 --
 -- Indizes der exportierten Tabellen

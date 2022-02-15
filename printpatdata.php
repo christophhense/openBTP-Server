@@ -1,6 +1,6 @@
 <?php
 require("./incs/rights.php");
-if ($usrpower >= 2) {
+
 
 
   include('./incs/db_credentials.inc.php');
@@ -43,7 +43,7 @@ echo "<tr><td>"  . $row["timestamp"] . " :</td><td> " . $row["Event"] . "</td></
 
 }
 echo"</table>";
-}
+
   ?>
   
   

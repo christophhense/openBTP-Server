@@ -20,7 +20,6 @@
         <li><a href="#Vorraussetzungen">Vorraussetzungen</a></li>
         <li><a href="#Ans-Laufen-Bringen">Ans laufen bringen</a></li>
         <li><a href="#Erste-Anmeldung">Erste Anmeldung</a></li>
-        <li><a href="#Konten-Anlegen">Konten anlegen</a></li>
       </ul>
     </li>
     <li><a href="#Aktueller-Stand">Aktueller Stand<a></li>

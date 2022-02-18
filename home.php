@@ -6,7 +6,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: index.html');
 	exit;
 }
-require("./incs/rights.php");
+require("./incs/rights.inc.php");
   if ($usrpower == 1) {
 	
     header("Location: ./statistik.php");
@@ -17,14 +17,14 @@ require("./incs/rights.php");
 
 <head>
 	<meta charset="utf-8">
-	<title>BTP_Server</title>
+	<title>openBTP-Server</title>
 	<link href="style.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="./fa/css/all.css">
 
 </head>
 
 <?php
-require ("./incs/rights.php");
+require ("./incs/rights.inc.php");
 ?>
 
 
@@ -54,7 +54,7 @@ require ("./incs/rights.php");
 	function openAdminPanel() {
 
 		var js_usropwer = <?php echo $usrpower ?>;
-		if (js_usropwer >= 9) {
+		if (js_usropwer >= 8) {
 		
 		window.location.href = "/adminpanel.php";
 		} else {
@@ -75,7 +75,7 @@ require ("./incs/rights.php");
 			<a href="./eingabe.php">Neuer Patient</a>
 			<a href="./tabelle.php">Übersicht Patient:innen</a>
 			<a href="./statistik.php">Statistik</a>
-			<a href="./lageinfos.php">Lageinfos</a>
+			<?php if($usrpower >=8){echo "<a href='./adminpanel.php'>Einstellungen</a>";} ?>
 			<a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 		</div>
 	</nav>
@@ -84,23 +84,23 @@ require ("./incs/rights.php");
 		<p>Wilkommen zurück, <?= $_SESSION['name'] ?>!<br>
 		</p>
 
-		<p>
-			Änderungsübersicht:<br>
-			- Patient:innen können mehrfach ein- und ausgebucht werden und bekommen eine Historie<br>
-			- Freitexteinträge in den Verlauf von Patient:innen<br>
-			- Rechtesystem und Adminpanel zur Benutzerverwaltung
+		
+		<?php
+   
+			include("./incs/db_credentials.inc.php");
+			$pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);;
+
+			$statement = $pdo->prepare("SELECT * FROM patienten WHERE anwesend = TRUE");
+			$statement->execute(array());
+			$anzahl_pat = $statement->rowCount();
+			echo "<h3>Aktuelle Anzahl Patient:innen innerhalb BTP: $anzahl_pat </h3>";
+
+			?>
 			
-		</p>
-		<p>
-			Geplante Änderungen / Neuerungen:<br>
-			- Stammdatenpflege<br>
-			- Exportfunktion <br>
-			- Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.<br>
-			- Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn ;) )<br>
-		</p>
+	
 		<p><button onclick="openSanBereich()" class="">Übersichtsseite Sanität</button><br><br><button onclick="openFastCheckOut()" class="">Schnelles Ausstempeln zu Einsatzende</button> </p>
 		
-		<p><button onclick="openAdminPanel()" class="">Adminpanel</button></p>
+		
 
 
 	</div>

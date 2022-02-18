@@ -4,7 +4,7 @@ if (!isset($_SESSION['loggedin'])) {
     header('Location: index.html');
     exit;
 }
-require("./incs/rights.php");
+require("./incs/rights.inc.php");
   if ($usrpower == 1) {
 	
     header("Location: ./statistik.php");
@@ -89,7 +89,7 @@ require("./incs/rights.php");
                         <input type="text" class="search-input" placeholder="Mobilität">
                     </th>
                     <th>
-                        <input type="text" class="search-input" placeholder="Bemerkungen">
+                        <input type="text" class="search-input" placeholder="Raum">
                     </th>
 
             </thead>
@@ -99,24 +99,39 @@ require("./incs/rights.php");
 
             include("./incs/db_credentials.inc.php");
             $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
+           
 
 
             if (mysqli_connect_error()) {
                 die('Connect Error (' . mysqli_connect_errno() . ') '
                     . mysqli_connect_error());
             }
-            $sql = "SELECT id, vorname, nachname, geburtsdatum, adresse, telefon, erkrankungen, medis, medisgenug, material, TMittel, mobility, bemerkungen FROM patienten WHERE ort = 'SanBereich' AND anwesend = TRUE";
-            $result = $con->query($sql);
+
+            $sql_san = "SELECT name FROM rooms WHERE isSan = TRUE";
+            $result_san = $con->query($sql_san);
+           
+            
+            if ($result_san->num_rows > 0) {
+
+                while ($row_san = $result_san->fetch_assoc()) {
+
+            $sql = "SELECT id, vorname, nachname, geburtsdatum, adresse, telefon, erkrankungen, medis, medisgenug, material, TMittel, mobility, bemerkungen, ort FROM patienten WHERE ort = ? AND anwesend = TRUE";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param('s', $row_san["name"]);
+            $stmt->execute();
+            $result = $stmt->get_result();
+     
+           
             if ($result->num_rows > 0) {
                 // output
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr><td class = 'patID'>" . $row["id"] . "</td><td>" . $row["vorname"] . "</td><td>" . $row["nachname"] . "</td><td>"
-                        . $row["geburtsdatum"] . "</td><td>" . $row["adresse"] . "</td><td>" . $row["telefon"] . "</td><td>" . $row["erkrankungen"] . "</td><td>" . $row["medis"] . "</td><td>" . $row["medisgenug"] . "</td><td>" . $row["material"] . "</td><td>" . $row["TMittel"] . "</td><td>" . $row["mobility"] . "</td><td>" . $row["bemerkungen"] . "</td></tr>";
+                        . $row["geburtsdatum"] . "</td><td>" . $row["adresse"] . "</td><td>" . $row["telefon"] . "</td><td>" . $row["erkrankungen"] . "</td><td>" . $row["medis"] . "</td><td>" . $row["medisgenug"] . "</td><td>" . $row["material"] . "</td><td>" . $row["TMittel"] . "</td><td>" . $row["mobility"] . "</td><td>" . $row["ort"] . "</td></tr>";
                 }
                 echo "</table>";
-            } else {
-                echo "Keine Patient:innen dem Abschnitt Sanität zugeordnet";
-            }
+            } 
+        }
+    }
             $con->close();
             ?>
 
@@ -125,8 +140,6 @@ require("./incs/rights.php");
     </div>
 
     </table>
-    <? //include("context-menu.php") 
-    ?>
     </div>
 
 </body>
@@ -138,7 +151,7 @@ require("./incs/rights.php");
             const row = e.target.closest("tr");
             
             const patId = row.querySelector(".patID").innerText;
-            window.location.href = "patinfo.php?selectedID=" + patId;
+            window.location.href = "patinfo.php?selectedID=" + patId  + "&sanbereich=TRUE";
         });
     });
 </script>

@@ -4,7 +4,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: index.html');
 	exit;
 }
-require("./incs/rights.php");
+require("./incs/rights.inc.php");
   if ($usrpower == 1) {
 	
     header("Location: ./statistik.php");
@@ -30,8 +30,8 @@ require("./incs/rights.php");
       <a href="./home.php">Startseite</a>
 			<a href="./eingabe.php">Neuer Patient</a>
 			<a href="./tabelle.php">Übersicht Patient:innen</a>
-			<a href="./statistik.php">Statistik</a>
-			<a href="./lageinfos.php">Lageinfos</a>
+      <a href="./statistik.php">Statistik</a>
+			<?php if($usrpower >=8){echo "<a href='./adminpanel.php'>Einstellungen</a>";} ?>
 			<a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 		</div>
   </nav>

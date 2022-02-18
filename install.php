@@ -109,7 +109,7 @@ function install_get_current_path($filename)
                                 
         </div>
         
-                            <button onclick="location.href='index.html<?php print $first_start_str; ?>';">Next</button>
+                            <button onclick="location.href='adminpanel.php<?php print $first_start_str; ?>';">Next</button>
                         
         <?php
     } else {

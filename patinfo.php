@@ -6,10 +6,53 @@ if (!isset($_SESSION['loggedin'])) {
 
   
 }
-require("./incs/rights.php");
+require("./incs/rights.inc.php");
   if ($usrpower == 1) {
     header("Location: ./statistik.php");
   }
+include("./incs/functions.inc.php");
+
+
+
+if (isset($_GET['del'])) {
+
+  if($usrpower >= 3){
+  deletePatient($db_host, $db_user, $db_password, $db_name, $_GET["selectedID"]);
+  }
+  header("Location: ./tabelle.php");
+}
+if (isset($_GET['room'])) {
+  if($usrpower >= 3){
+
+  changeRoom($db_host, $db_user, $db_password, $db_name, $_GET["selectedID"], $_GET["room"]);
+  }
+
+  echo ('<script>history.back()</script>');
+  
+
+}
+if (isset($_GET['checkin'])) {
+  if($usrpower >= 3){
+
+  checkin($db_host, $db_user, $db_password, $db_name, $_GET["selectedID"]);
+  }
+
+  echo ('<script>history.back()</script>');
+  
+
+}
+if (isset($_GET['checkout'])) {
+  if($usrpower >= 3){
+
+  checkout($db_host, $db_user, $db_password, $db_name, $_GET["selectedID"]);
+  }
+
+  echo ('<script>history.back()</script>');
+
+  
+
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,45 +66,92 @@ require("./incs/rights.php");
 </head>
 <script>
   function MenuCheckOut() {
+    var js_usropwer = <?php echo $usrpower ?>;
+		if (js_usropwer >= 3) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const selectedID = urlParams.get('selectedID')
-    window.location.href = "clockout.php?selectedID=" + selectedID;
+    window.location.href = "patinfo.php?selectedID=" + selectedID + "&checkout";
+  } else {
+			alert("Du hast leider nicht genügend Rechte!")
+		}
 
   }
   function MenuCheckIn() {
+    var js_usropwer = <?php echo $usrpower ?>;
+		if (js_usropwer >= 3) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const selectedID = urlParams.get('selectedID')
-    window.location.href = "checkin.php?selectedID=" + selectedID;
+    window.location.href = "patinfo.php?selectedID=" + selectedID + "&checkin";
+  } else {
+			alert("Du hast leider nicht genügend Rechte!")
+		}
 
   }
 
   function MenuLogEntry(){
+    var js_usropwer = <?php echo $usrpower ?>;
+		if (js_usropwer >= 3) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const selectedID = urlParams.get('selectedID')
     window.location.href = "logentry.php?selectedID=" + selectedID;
+  } else {
+			alert("Du hast leider nicht genügend Rechte!")
+		}
+
   
   }
 
   function MenuPrint() {
+
+    var js_usropwer = <?php echo $usrpower ?>;
+		if (js_usropwer >= 2) {
+      
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const selectedID = urlParams.get('selectedID')
     window.open("printpatdata.php?selectedID=" + selectedID, "_blank", "toolbar=no,scrollbars=yes,resizable=yes,");
+		
+
+		} else {
+			alert("Du hast leider nicht genügend Rechte!")
+		}
+
+	
   }
 
   function MenuRefresh() {
     location.reload();
   }
   function MenuGoBack(){
-    window.history.back();
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const sanbereich = urlParams.get('sanbereich');
+
+    if (sanbereich == "TRUE"){
+
+      window.location.href = "./sanbereich.php";
+      
+    } else {
+      window.location.href = "./tabelle.php";
+
+    }
+
+
   }
 
   function extendDropdown() {
+    var js_usropwer = <?php echo $usrpower ?>;
+		if (js_usropwer >= 3) {
     document.getElementById("dropdownChangeRoom").classList.toggle("show");
+  
+  }else {
+			alert("Du hast leider nicht genügend Rechte!")
   }
+}
+
 
   window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
@@ -77,8 +167,15 @@ require("./incs/rights.php");
   }
 
   function extendDropdown2() {
+    var js_usropwer = <?php echo $usrpower ?>;
+		if (js_usropwer >= 8) {
+
     document.getElementById("dropdownDelPat").classList.toggle("show");
+  }else {
+			alert("Du hast leider nicht genügend Rechte!")
   }
+  }
+
   window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
       var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -102,7 +199,7 @@ require("./incs/rights.php");
 			<a href="./eingabe.php">Neuer Patient</a>
 			<a href="./tabelle.php">Übersicht Patient:innen</a>
 			<a href="./statistik.php">Statistik</a>
-			<a href="./lageinfos.php">Lageinfos</a>
+			<?php if($usrpower >=8){echo "<a href='./adminpanel.php'>Einstellungen</a>";} ?>
 			<a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 		</div>
 	</nav>
@@ -111,8 +208,8 @@ require("./incs/rights.php");
 
   include('./incs/db_credentials.inc.php');
   $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
-  $ID = $_GET["selectedID"];
-
+  
+$ID = $_GET["selectedID"];
   $sql = "SELECT * FROM patienten WHERE ID = $ID";
   $result = mysqli_query($con, $sql);
   echo "<br><h3>Übersicht:</h3>";
@@ -154,12 +251,27 @@ require("./incs/rights.php");
     <a class="dropdown">
       <button onclick="extendDropdown()" class="dropbtn">Aufenthaltsraum ändern</button>
       <div id="dropdownChangeRoom" class="dropdown-content">
-        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Aula">Aula</a>
-        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Sporthalle">Sporthalle</a>
-        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle1">Turnhalle 1</a>
-        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle2">Turnhalle 2</a>
-        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=Turnhalle3">Turnhalle 3</a>
-        <a href="./changeroom.php?selectedID=<?php echo $ID ?>&room=SanBereich">SanBereich</a>
+     <?php include("./incs/db_credentials.inc.php");
+    $con = new mysqli($db_host, $db_user, $db_password, $db_name);
+
+    if (mysqli_connect_error()) {
+      die('Connect Error (' . mysqli_connect_errno() . ') '
+        . mysqli_connect_error());
+    }
+    $sql = "SELECT name FROM rooms";
+    $result = $con->query($sql);
+    if ($result->num_rows > 0) {
+      // output
+      while ($row = $result->fetch_assoc()) {
+
+          echo"<a href='./patinfo.php?selectedID=" . $ID . "&room=" . $row["name"] . "'>" . $row["name"] . "</a>";
+
+
+      }
+    }
+      $con->close();
+        ?>
+       
       </div>
     </a>
 
@@ -172,7 +284,7 @@ require("./incs/rights.php");
     <a class="dropdown">
       <button onclick="extendDropdown2()" class="dropbtn">Patient löschen</button>
       <div id="dropdownDelPat" class="dropdown-content">
-        <a href="./deletepat.php?selectedID=<?php echo $ID ?>">Sicher?</a>
+        <a href ="./patinfo.php?selectedID=<?php echo $ID ?>&del=true">Sicher?</a>
       </div>
     </a>
     

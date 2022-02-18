@@ -6,7 +6,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: index.html');
 	exit;
 }
-require("./incs/rights.php");
+require("./incs/rights.inc.php");
   if ($usrpower == 1) {
 	
     header("Location: ./statistik.php");
@@ -16,7 +16,26 @@ require("./incs/rights.php");
   }
 
 
-?>
+  if (isset($_GET["error"])) {
+                    if (!empty($_GET["error"])) {
+                      switch($_GET["error"]){
+
+                        case "nofirstname":
+                          echo"<script>alert('Kein Vorname eingetragen');</script>";
+                        case "noname":
+                          echo"<script>alert('Kein Nachnamen eingetragen');</script>";
+                        case "nobirthday":
+                          echo"<script>alert('Kein Geburtsdatum eingetragen');</script>";
+                        case "noadress":
+                          echo"<script>alert('Keine Adresse eingetragen');</script>";
+                        case "nocap":
+                          echo"<script>alert('Der gewählte Raum hat keine Kapazität mehr');</script>";
+
+                      }
+
+                    }
+                }
+                ?>
 <html>
   <meta charset="utf-8" >
   <head>
@@ -33,16 +52,21 @@ require("./incs/rights.php");
 			<h1>BTP-Server</h1>
       <a href="./home.php">Startseite</a>
 			<a href="./eingabe.php">Neuer Patient</a>
-			<a href="./tabelle.php">Übersicht Patient:in</a>
+			<a href="./tabelle.php">Übersicht Patient:innen</a>
 			<a href="./statistik.php">Statistik</a>
-			<a href="./lageinfos.php">Lageinfos</a>
+			<?php if($usrpower >=8){echo "<a href='./adminpanel.php'>Einstellungen</a>";} ?>
 			<a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 		</div>
   </nav>
 
     <div class="container">
+    <?php 
+      if (isset($_GET["success"])) {
+                 echo("Patient erfolgreich eingetragen!");
+      }?>
       <h1>Neuer Patient</h1>
       <h3>vollständig ausfüllen!</h3>
+     
 
         <form action = "connect.php" method="POST">
           <div class="row">
@@ -123,10 +147,26 @@ require("./incs/rights.php");
             </div>
             <div class="col-75">
               <select id="TMittel" name="TMittel">
-                <option value="RTW">RTW</option>
-                <option value="KTW">KTW</option>
-                <option value="keinRD">LMW / Taxi / Privatunternehmen / DSW21</option>
-                <option value="selbst">Eigenständig</option>
+              <?php
+                    include("./incs/db_credentials.inc.php");
+                    $con = new mysqli($db_host, $db_user, $db_password, $db_name);
+                
+                    if (mysqli_connect_error()) {
+                      die('Connect Error (' . mysqli_connect_errno() . ') '
+                        . mysqli_connect_error());
+                    }
+                    $sql = "SELECT tmittelname FROM transportmittel";
+                    $result = $con->query($sql);
+                    if ($result->num_rows > 0) {
+                      // output
+                      while ($row = $result->fetch_assoc()) {
+
+                        echo"<option value='" . $row["tmittelname"] . "'>". $row["tmittelname"] . "</option>";
+
+                      }
+
+                    }
+                  ?>
               </select>
             </div>
           </div>
@@ -156,12 +196,36 @@ require("./incs/rights.php");
               </div>
               <div class="col-75">
                 <select id="ort" name="ort">
-                  <option value="Aula">Aula</option>
-                  <option value="Sporthalle">Sporthalle</option>
-                  <option value="Turnhalle1">Turnhalle 1</option>
-                  <option value="Turnhalle2">Turnhalle 2</option>
-                  <option value="Turnhalle3">Turnhalle 3</option>
-                  <option value="SanBereich">Sanitätsbereich</option>
+                  <?php
+                    include("./incs/db_credentials.inc.php");
+                    $con = new mysqli($db_host, $db_user, $db_password, $db_name);
+                    $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);
+                
+                    if (mysqli_connect_error()) {
+                      die('Connect Error (' . mysqli_connect_errno() . ') '
+                        . mysqli_connect_error());
+                    }
+                    $sql = "SELECT name, capacity FROM rooms";
+                    $result = $con->query($sql);
+                    if ($result->num_rows > 0) {
+                      
+                      // output
+                      while ($row = $result->fetch_assoc()) {
+
+                        $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
+                        $statement->execute(array($row["name"]));
+                        $anzahl_pat = $statement->rowCount();
+
+                        echo"<option value='" . $row["name"] . "'>". $row["name"] . " (" . $anzahl_pat . " / " . $row["capacity"] . ")</option>";
+
+                      }
+
+                    }
+
+                    $pdo = null;
+                    $con->close();
+                  ?>
+                
                 </select>
               </div>
             </div>

@@ -32,7 +32,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
             $_SESSION['name'] = $_POST['username'];
             $_SESSION['id'] = $id;
 
-            require("./incs/rights.php");
+            require("./incs/rights.inc.php");
                 if ($usrpower == 1){
             header('Location: statistik.php');
                 }else{

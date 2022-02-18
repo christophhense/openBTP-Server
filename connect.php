@@ -1,5 +1,6 @@
 <?php
-
+include("./incs/db_credentials.inc.php");
+require("./incs/functions.inc.php");
 
 $vorname = filter_input(INPUT_POST, 'vorname');
 $nachname = filter_input(INPUT_POST, 'nachname');
@@ -15,6 +16,7 @@ $mobility = filter_input(INPUT_POST, 'mobility');
 $bemerkungen = filter_input(INPUT_POST, 'bemerkungen');
 $ort = filter_input(INPUT_POST, 'ort');
 
+if (getAuslastung($db_host, $db_name,$db_password,$db_user,$ort) == FALSE) {
 
 if (!empty($vorname)) {
     if (!empty($nachname)) {
@@ -22,7 +24,7 @@ if (!empty($vorname)) {
             if (!empty($adresse)) {
 
 
-                include("./incs/db_credentials.inc.php");
+                
                 $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
 
 
@@ -42,7 +44,8 @@ if (!empty($vorname)) {
 
 
 
-                        echo "New patient is inserted sucessfully";
+                        
+                        header('Location: ./eingabe.php?success');
                     } else {
                         echo "Error: " . $sql . "
 " . $con->error;
@@ -51,20 +54,31 @@ if (!empty($vorname)) {
                 }
             } else {
                 echo "Adresse fehlt";
+                header('Location: ./eingabe.php?error=noadress');
+                
                 die();
             }
         } else {
             echo "Geburtsdatum fehlt";
+            header('Location: ./eingabe.php?error=nobirthday');
             die();
         }
     } else {
         echo "Name fehlt";
+        header('Location: ./eingabe.php?error=noname');
         die();
     }
 } else {
     echo "Vorname fehlt";
+    header('Location: ./eingabe.php?error=nofirstname');
     die();
 }
+
+    } else {
+
+        header('Location: ./eingabe.php?error=nocap');
+   
+    }
 
 ?>
 <meta http-equiv="refresh" content="0; url=./eingabe.php">

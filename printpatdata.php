@@ -1,8 +1,5 @@
 <?php
-require("./incs/rights.php");
-
-
-
+ 
   include('./incs/db_credentials.inc.php');
   $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
   $ID = $_GET["selectedID"];

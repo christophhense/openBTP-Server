@@ -1,7 +1,7 @@
 <?php
 
 function get_version() {
-	return "ALPHA v.0.5.1";
+	return "v1.0.0";
 }
 function open_database($host, $database, $user, $password) {
 	try {
@@ -67,9 +67,13 @@ function install($version, $option, $host, $name, $user, $password) {
 		do_sql_file("./sql/drop_database_patlog.sql");
 		do_sql_file("./sql/drop_database_patienten.sql");
 		do_sql_file("./sql/drop_database_patlog.sql");
+		do_sql_file("./sql/drop_database_rooms.sql");
+		do_sql_file("./sql/drop_database_transportmittel.sql");
 		do_sql_file("./sql/accounts.sql");
 		do_sql_file("./sql/patienten.sql");	
 		do_sql_file("./sql/patlog.sql");
+		do_sql_file("./sql/rooms.sql");
+		do_sql_file("./sql/transportmittel.sql");
 		$output_text .= "<li> Datenbankinstallation abgeschlossen!";
 		$output_text .= write_conf($host, $name, $user, $password);
 		break;

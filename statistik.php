@@ -24,19 +24,21 @@ if (!isset($_SESSION['loggedin'])) {
       <a href="./home.php">Startseite</a>
       <a href="./eingabe.php">Neuer Patient</a>
       <a href="./tabelle.php">Übersicht Patient:innen</a>
-      <a href="./statistik.php">Statistik</a>
-      <a href="./lageinfos.php">Lageinfos</a>
+      <a href="./statistik.php">Statistik</a> 
+      <?php require("./incs/rights.inc.php"); if($usrpower >=8){echo "<a href='./adminpanel.php'>Einstellungen</a>";} ?>     
       <a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
     </div>
   </nav>
 
   <div class="container">
-    <h2> Aktuelle Statistik</h2>
-
+  <div class="content">
+    
+<div>
+<h2> Aktuelle Statistik</h2>
     <?php
    
     include("./incs/db_credentials.inc.php");
-    $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);;
+    $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);
 
     $statement = $pdo->prepare("SELECT * FROM patienten WHERE anwesend = TRUE");
     $statement->execute(array());
@@ -44,85 +46,72 @@ if (!isset($_SESSION['loggedin'])) {
     echo "<h3>Aktuelle Anzahl Patient:innen innerhalb BTP: $anzahl_pat </h3>";
 
     ?>
-    <div>
-      <div>
-        <p>
+ 
+      
         <h4>Aktuelle Raumbelegung:</h4>
-        </p>
-      </div>
+
+
 
       <?php
+ 
+      $con = new mysqli($db_host, $db_user, $db_password, $db_name);
+      $sql = "SELECT name, capacity FROM rooms";
+      $result = $con->query($sql);
+
+      if ($result->num_rows > 0) {
+
+          while ($row = $result->fetch_assoc()) {
+
+  
+            $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
+            $statement->execute(array($row["name"]));
       
-      include("./incs/db_credentials.inc.php");
-      $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);
+      
+            $anzahl_pat = $statement->rowCount();
+            echo "" . $row["name"] . ": $anzahl_pat (Max: " . $row["capacity"] . ")<br>";
+          }
 
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
-      $statement->execute(array('Aula'));
-      $anzahl_pat = $statement->rowCount();
-      echo "<p>Aula: $anzahl_pat </p>";
-
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
-      $statement->execute(array('Sporthalle'));
-      $anzahl_pat = $statement->rowCount();
-      echo "<p>Sporthalle: $anzahl_pat </p>";
-
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
-      $statement->execute(array('Turnhalle1'));
-      $anzahl_pat = $statement->rowCount();
-      echo "<p>Turnhalle 1: $anzahl_pat </p>";
-
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
-      $statement->execute(array('Turnhalle2'));
-      $anzahl_pat = $statement->rowCount();
-      echo "<p>Turnhalle 2: $anzahl_pat </p>";
-
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
-      $statement->execute(array('Turnhalle3'));
-      $anzahl_pat = $statement->rowCount();
-      echo "<p>Turnhalle 3: $anzahl_pat </p>";
-
-      $statement = $pdo->prepare("SELECT * FROM patienten WHERE ort = ? AND anwesend = TRUE");
-      $statement->execute(array('SanBereich'));
-      $anzahl_pat = $statement->rowCount();
-      echo "<p>San Bereich: $anzahl_pat </p>";
-
+          } else {
+            echo ("Es wurden keine Räume gefunden!");
+       }
+      
+      
       ?>
 
-      <div>
-        <div>
-          <p>
-            <h3>Gesamte Statistik</h3>
-            <p>
-          <h4>Transportmittel:</h4>
-          </p>
-        </div>
+
+        
+</div>
+<div class="content">
+       
+            <h2>Gesamte Statistik</h2>
+
+          <h4>Genutzte Transportmittel:</h4>
+  
+ 
 
         <?php
-        include("./incs/db_credentials.inc.php");
-        $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);
+      $con = new mysqli($db_host, $db_user, $db_password, $db_name);
+      $sql = "SELECT tmittelname FROM transportmittel";
+      $result = $con->query($sql);
+      
+      if ($result->num_rows > 0) {
 
-        $statement = $pdo->prepare("SELECT * FROM patienten WHERE TMittel = ?");
-        $statement->execute(array('RTW'));
-        $anzahl_pat = $statement->rowCount();
-        echo "<p>RTW: $anzahl_pat </p>";
-
-        $statement = $pdo->prepare("SELECT * FROM patienten WHERE TMittel = ?");
-        $statement->execute(array('KTW'));
-        $anzahl_pat = $statement->rowCount();
-        echo "<p>KTW: $anzahl_pat </p>";
-
-        $statement = $pdo->prepare("SELECT * FROM patienten WHERE TMittel = ?");
-        $statement->execute(array('keinRD'));
-        $anzahl_pat = $statement->rowCount();
-        echo "<p>LMW / Taxi / Privatunternehmen / DSW21: $anzahl_pat </p>";
-
-        $statement = $pdo->prepare("SELECT * FROM patienten WHERE TMittel = ?");
-        $statement->execute(array('selbst'));
-        $anzahl_pat = $statement->rowCount();
-        echo "<p>Eigenständig: $anzahl_pat </p>";
+          while ($row = $result->fetch_assoc()) {
 
 
+            $statement = $pdo->prepare("SELECT * FROM patienten WHERE Tmittel = ? ");
+            $statement->execute(array($row["tmittelname"]));
+      
+      
+            $anzahl_pat = $statement->rowCount();
+            echo "" . $row["tmittelname"] . ": $anzahl_pat <br>";
+          }
+
+          } else {
+            echo ("Es wurden keine Transportmittel gefunden!");
+       }
         ?>
+
 <?php
 include("./incs/db_credentials.inc.php");
 $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_password);
@@ -130,12 +119,11 @@ $pdo = new PDO("mysql:host=" . $db_host . ";dbname=" . $db_name, $db_user, $db_p
 $statement = $pdo->prepare("SELECT * FROM patienten");
 $statement->execute(array());
 $anzahl_pat = $statement->rowCount();
-echo "<h3>Anzahl registrierter Patient:innen insgesamt: $anzahl_pat </h3> </p>";
+echo "<h3>Anzahl registrierter Patient:innen insgesamt: $anzahl_pat </h3>";
 ?>
-      </div>
-    </div>
-
-
+        
+</div>
+  </div>
 </body>
 
 </html>

@@ -7,13 +7,32 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 
 }
-require("./incs/rights.php");
+require("./incs/rights.inc.php");
+include ('./incs/db_credentials.inc.php');
+
+
   if ($usrpower == 1) {
 	
     header("Location: ./statistik.php");
   }
+  if (isset($_POST["logentry"]) && $usrpower >= 3) {
+    $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
+    $ID = $_GET["selectedID"];
 
-require("./incs/rights.php");
+    if (!empty($_POST["logentry"])) {
+      
+      $LogEntry = filter_input(INPUT_POST, 'logentry');
+      $sql = "INSERT INTO patlog (Event,PatID) values ('$LogEntry','$ID')";
+
+      $con->query($sql);
+      
+
+    }
+    mysqli_close($con);
+    header("Location: ./patinfo.php?selectedID=$ID");
+  }
+
+
 ?>
 
 <script>  
@@ -26,7 +45,7 @@ var js_usropwer = <?php echo $usrpower ?>;
     }
 
     function MenuGoBack(){
-    window.history.back();
+    window.location.href = "./tabelle.php";
     }
 
 
@@ -49,7 +68,7 @@ var js_usropwer = <?php echo $usrpower ?>;
 			<a href="./eingabe.php">Neuer Patient</a>
 			<a href="./tabelle.php">Übersicht Patient:in</a>
 			<a href="./statistik.php">Statistik</a>
-			<a href="./lageinfos.php">Lageinfos</a>
+			<?php if($usrpower >=8){echo "<a href='./adminpanel.php'>Einstellungen</a>";} ?>
 			<a href="./logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
 		</div>
   </nav>
@@ -57,7 +76,7 @@ var js_usropwer = <?php echo $usrpower ?>;
     <div class="container">
       <h1>Eintrag erstellen</h1>
 
-        <form action = "sendlogentry.php?selectedID=<?php echo $ID ?>" method="POST">
+        <form action = "logentry.php?selectedID=<?php echo $ID ?>" method="POST">
           <div class="row">
             <div class="col-75">
                 <input type="text" id="logentry" name="logentry" placeholder="Eintrag in den Patientenverlauf" style="height:130px">

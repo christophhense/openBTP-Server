@@ -4,11 +4,25 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: index.html');
 	exit;
 }
-require("./incs/rights.php");
+require("./incs/rights.inc.php");
   if ($usrpower == 1) {
 	
     header("Location: ./statistik.php");
   }
+include("./incs/functions.inc.php");
+
+if (isset($_GET['checkout'])) {
+  if ($usrpower >= 3){
+  checkout($db_host, $db_user, $db_password, $db_name, $_GET["selectedID"]);
+
+  echo ('<script>history.back()</script>');
+  } else {
+    echo ('<script>alert("Du hast nicht genügend Bereichtigungen!")</script>')
+    ;
+  }
+  
+
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -89,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const row = e.target.closest("tr");
     
     const patId = row.querySelector(".patID").innerText;
-    window.location.href = "./clockout.php?selectedID=" + patId;
+    window.location.href = "./fastclockout.php?selectedID=" + patId + "&checkout";
   });
 });
 

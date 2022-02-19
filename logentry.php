@@ -10,6 +10,17 @@ if (!isset($_SESSION['loggedin'])) {
 require("./incs/rights.inc.php");
 include ('./incs/db_credentials.inc.php');
 
+$ID = $_GET["selectedID"];
+settype($ID, "integer");
+
+if (!empty($_GET["sanbereich"])){
+
+$Path = ("?selectedID=$ID&sanbereich=1");
+}else{
+  $Path = ("?selectedID=$ID");
+}
+
+
 
   if ($usrpower == 1) {
 	
@@ -17,7 +28,8 @@ include ('./incs/db_credentials.inc.php');
   }
   if (isset($_POST["logentry"]) && $usrpower >= 3) {
     $con = new mysqli($db_host, $db_user, $db_password, $db_name); 
-    $ID = $_GET["selectedID"];
+    
+
 
     if (!empty($_POST["logentry"])) {
       
@@ -25,11 +37,14 @@ include ('./incs/db_credentials.inc.php');
       $sql = "INSERT INTO patlog (Event,PatID) values ('$LogEntry','$ID')";
 
       $con->query($sql);
+      header("Location: ./patinfo.php$Path");
+      
       
 
     }
     mysqli_close($con);
-    header("Location: ./patinfo.php?selectedID=$ID");
+    
+   
   }
 
 
@@ -44,9 +59,23 @@ var js_usropwer = <?php echo $usrpower ?>;
 
     }
 
+
     function MenuGoBack(){
-    window.location.href = "./tabelle.php";
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const sanbereich = urlParams.get('sanbereich');
+    const PatID = urlParams.get('selectedID');
+
+    if (sanbereich == "1"){
+
+      window.location.href = ("./patinfo.php?selectedID=" + PatID + "&sanbereich=1");
+      
+    } else {
+      window.location.href = "./patinfo.php?selectedID=" + PatID;
+
     }
+    }
+
 
 
 </script>
@@ -76,7 +105,7 @@ var js_usropwer = <?php echo $usrpower ?>;
     <div class="container">
       <h1>Eintrag erstellen</h1>
 
-        <form action = "logentry.php?selectedID=<?php echo $ID ?>" method="POST">
+        <form action = "logentry.php<?php echo $Path ?>" method="POST">
           <div class="row">
             <div class="col-75">
                 <input type="text" id="logentry" name="logentry" placeholder="Eintrag in den Patientenverlauf" style="height:130px">

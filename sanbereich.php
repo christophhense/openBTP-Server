@@ -151,7 +151,7 @@ require("./incs/rights.inc.php");
             const row = e.target.closest("tr");
             
             const patId = row.querySelector(".patID").innerText;
-            window.location.href = "patinfo.php?selectedID=" + patId  + "&sanbereich=TRUE";
+            window.location.href = "patinfo.php?selectedID=" + patId  + "&sanbereich=1";
         });
     });
 </script>

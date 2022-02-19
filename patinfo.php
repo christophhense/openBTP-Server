@@ -93,10 +93,16 @@ if (isset($_GET['checkout'])) {
   function MenuLogEntry(){
     var js_usropwer = <?php echo $usrpower ?>;
 		if (js_usropwer >= 3) {
+
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const selectedID = urlParams.get('selectedID')
-    window.location.href = "logentry.php?selectedID=" + selectedID;
+    const sanbereich = urlParams.get('sanbereich');
+    if (sanbereich == "1"){
+    window.location.href = ("logentry.php?selectedID=" + selectedID + "&sanbereich=1");
+    }else{
+      window.location.href = ("logentry.php?selectedID=" + selectedID);
+    }
   } else {
 			alert("Du hast leider nicht genügend Rechte!")
 		}
@@ -130,7 +136,7 @@ if (isset($_GET['checkout'])) {
     const urlParams = new URLSearchParams(queryString);
     const sanbereich = urlParams.get('sanbereich');
 
-    if (sanbereich == "TRUE"){
+    if (sanbereich == "1"){
 
       window.location.href = "./sanbereich.php";
       

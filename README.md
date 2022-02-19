@@ -20,7 +20,6 @@
         <li><a href="#Vorraussetzungen">Vorraussetzungen</a></li>
         <li><a href="#Ans-Laufen-Bringen">Ans laufen bringen</a></li>
         <li><a href="#Erste-Anmeldung">Erste Anmeldung</a></li>
-        <li><a href="#Konten-Anlegen">Konten anlegen</a></li>
       </ul>
     </li>
     <li><a href="#Aktueller-Stand">Aktueller Stand<a></li>
@@ -50,7 +49,6 @@ Benötigt wird ein Webserver, PHP und eine SQL-Datenbank.
 Ein Beispiel:
 Apache als Webserver + PHP
 MariaDB als Datenbank
-evtl. phpMyAdmin um die Einrichtung zu verwalten.
 
 ### Ans Laufen Bringen
 
@@ -60,14 +58,6 @@ evtl. phpMyAdmin um die Einrichtung zu verwalten.
 
 Benutzer: `btpuser`
 Passwort: `btpuser`
-
-### Konten anlegen
-
-1. Mit btpuser anmelden
-2. `/register.php` aufrufen und neue:n Benutzer:in anlegen
-3. über die CLI der Datenbank oder phpMyAdmin den btpuser löschen.
-
-
 
 ## Aktueller Stand
   
@@ -80,15 +70,14 @@ Passwort: `btpuser`
 - Neu: Patient:innen können mehrfach ein und ausgebucht werden und bekommen eine Historie
 - Neu: Freitexteinträge in den Verlauf von Patient:innen
 - Neu: Rechtesystem und Adminpanel zur Benutzerverwaltung
+- Neu: Stammdatenpflege
 
 
 
 <!-- ROADMAP -->
 ## Was ist geplant?
 
-- Stammdatenpflege
 - Echtzeit Notizen zur Kommunikation in der Lage mit Benachrichtigungen.
-- Eigenständige Passwortänderung über die Profil-Seite (dann hat diese endlich einen erkennbaren Sinn 😏 )
 - UHS-Modul (ähnlich wie SanBereich mit angepasstem Datensatz (Kostenträger, Fachrichtung, Meldebild etc.)
 - Schnittstelle zum openTacticalDispatcher zum Anlegen von Transporten und Einsätzen.
 
